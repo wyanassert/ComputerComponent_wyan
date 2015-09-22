@@ -67,10 +67,6 @@ static void init_ramdisk()
 
 static void load_entry()
 {
-    char buf[80];
-//    getcwd(buf, sizeof(buf));
-    printf("current working directory: %s\n", buf);
-
     int ret;
     FILE *fp = fopen("entry", "rb");
     Assert(fp, "Can not open 'entry'");
