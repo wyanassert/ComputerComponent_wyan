@@ -43,6 +43,13 @@ static int cmd_q(char *args)
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args)
+{
+    int n = atoi(args);
+    cpu_exec(n);
+    return 0;
+}
+
 static struct
 {
     char *name;
@@ -53,6 +60,7 @@ static struct
     { "help", "Display informations about all supported commands", cmd_help },
     { "c", "Continue the execution of the program", cmd_c },
     { "q", "Exit NEMU", cmd_q },
+    {"si", "single step", cmd_si},
 
     /* TODO: Add more commands */
 
@@ -116,6 +124,7 @@ void ui_mainloop()
         extern void sdl_clear_event_queue(void);
         sdl_clear_event_queue();
 #endif
+
 
         int i;
         for(i = 0; i < NR_CMD; i ++)
