@@ -63,6 +63,7 @@ static int cmd_info(char *args)
         printf("ebp:%x  bp:%x\n", cpu.ebp, cpu.gpr[5]._16);
         printf("esi:%x  si:%x\n", cpu.esi, cpu.gpr[6]._16);
         printf("edi:%x  di:%x\n", cpu.edi, cpu.gpr[7]._16);
+        printf("eip:%x\n", cpu.eip);
         return 0;
     }
     else if(strlen(args) == 1 && args[0] == 'w')
