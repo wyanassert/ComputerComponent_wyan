@@ -55,14 +55,14 @@ static int cmd_info(char *args)
 {
     if(strlen(args) == 1 && args[0] == 'r')
     {
-        printf("exa:%x  ax:%x  ah:%x  al:%x\n", cpu.eax, cpu.gpr[0]._16, cpu.gpr[0]._8[0], cpu.gpr[0]._8[1]);
-        printf("ecx:%x  cx:%x  ch:%x  cl:%x\n", cpu.ecx, cpu.gpr[1]._16, cpu.gpr[1]._8[0], cpu.gpr[1]._8[1]);
-        printf("edx:%x  dx:%x  dh:%x  dl:%x\n", cpu.edx, cpu.gpr[2]._16, cpu.gpr[2]._8[0], cpu.gpr[2]._8[1]);
-        printf("ebx:%x  bx:%x  bh:%x  bl:%x\n", cpu.ebx, cpu.gpr[3]._16, cpu.gpr[3]._8[0], cpu.gpr[3]._8[1]);
-        printf("ebp:%x\n", cpu.ebp);
-        printf("esi:%x\n", cpu.esi);
-        printf("edi:%x\n", cpu.edi);
-        printf("esp:%x\n", cpu.esp);
+        printf("exa:%x  ax:%x  ah:%x  al:%x\n", cpu.eax, cpu.gpr[0]._16, cpu.gpr[0]._8[1], cpu.gpr[0]._8[0]);
+        printf("ecx:%x  cx:%x  ch:%x  cl:%x\n", cpu.ecx, cpu.gpr[1]._16, cpu.gpr[1]._8[1], cpu.gpr[1]._8[0]);
+        printf("edx:%x  dx:%x  dh:%x  dl:%x\n", cpu.edx, cpu.gpr[2]._16, cpu.gpr[2]._8[1], cpu.gpr[2]._8[0]);
+        printf("ebx:%x  bx:%x  bh:%x  bl:%x\n", cpu.ebx, cpu.gpr[3]._16, cpu.gpr[3]._8[1], cpu.gpr[3]._8[0]);
+        printf("esp:%x  sp:%x\n", cpu.esp, cpu.gpr[4]._16);
+        printf("ebp:%x  bp:%x\n", cpu.ebp, cpu.gpr[5]._16);
+        printf("esi:%x  si:%x\n", cpu.esi, cpu.gpr[6]._16);
+        printf("edi:%x  di:%x\n", cpu.edi, cpu.gpr[7]._16);
         return 0;
     }
     else if(strlen(args) == 1 && args[0] == 'w')
