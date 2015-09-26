@@ -55,7 +55,7 @@ static int cmd_info(char *args)
 {
     if(strlen(args) == 1 && args[0] == 'r')
     {
-        printf("exa:%x\n", cpu.eax);
+        printf("exa:%x  ax:%x  ah:%x  al:%x\n", cpu.eax, cpu.gpr[0]._16, cpu.gpr[0]._8[0], cpu.gpr[0]._8[1]);
         printf("edx:%x\n", cpu.edx);
         printf("ecx:%x\n", cpu.ecx);
         printf("ebx:%x\n", cpu.ebx);
