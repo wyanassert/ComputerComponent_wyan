@@ -116,7 +116,6 @@ static int cmd_x(char *args)
                     printf("input Error!\n");
                     return 0;
                 }
-                printf("%d %d\n", c, tmpPow);
                 tmpAddr += c * tmpPow;
                 tmpPow *= 16;
             }
