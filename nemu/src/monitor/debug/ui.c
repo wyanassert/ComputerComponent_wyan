@@ -55,7 +55,14 @@ static int cmd_info(char *args)
 {
     if(strlen(args) == 1 && args[0] == 'r')
     {
-        printf("exa:%x", cpu.eax);
+        printf("exa:%x\n", cpu.eax);
+        printf("edx:%x\n", cpu.edx);
+        printf("ecx:%x\n", cpu.ecx);
+        printf("ebx:%x\n", cpu.ebx);
+        printf("ebp:%x\n", cpu.ebp);
+        printf("esi:%x\n", cpu.esi);
+        printf("edi:%x\n", cpu.edi);
+        printf("esp:%x\n", cpu.esp);
         return 0;
     }
     else if(strlen(args) == 1 && args[0] == 'w')
