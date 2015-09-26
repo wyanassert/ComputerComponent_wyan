@@ -77,6 +77,16 @@ static int cmd_info(char *args)
     }
 }
 
+static int cmd_p(char *args)
+{
+    return 0;
+}
+
+static int cmd_x(char *args)
+{
+    return 0;
+}
+
 static struct
 {
     char *name;
@@ -89,7 +99,8 @@ static struct
     { "q", "Exit NEMU", cmd_q },
     { "si", "single step", cmd_si},
     { "info", "print state information of program", cmd_info},
-
+    {"p", "work out the value of an experssion", cmd_p},
+    {"x", "swap the memory", cmd_x},
     /* TODO: Add more commands */
 
 };
