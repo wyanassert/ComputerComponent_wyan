@@ -85,7 +85,7 @@ static int cmd_p(char *args)
 static int cmd_x(char *args)
 {
     int N = 0;
-    int tmpAddr;
+    uint32_t tmpAddr;
     char *tmpCharP = NULL;
     tmpCharP = strtok(args, " ");
     if(tmpCharP)
