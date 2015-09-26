@@ -84,6 +84,7 @@ static int cmd_p(char *args)
 
 static int cmd_x(char *args)
 {
+    printf("%s\n", args);
     int N = 0;
     int32_t tmpAddr;
     char *tmpCharP = NULL;
