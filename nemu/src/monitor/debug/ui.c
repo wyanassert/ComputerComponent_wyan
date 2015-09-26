@@ -120,7 +120,7 @@ static int cmd_x(char *args)
         int j = 0;
             for(j = 0; j < 4; j++)
             {
-                printf("%x\t", hwaddr_read(tmpAddr + i * 4 + j, 2));
+                printf("%x\t", hwaddr_read(tmpAddr + i * 4 + j, 1));
             }
             printf("\n");
         }
