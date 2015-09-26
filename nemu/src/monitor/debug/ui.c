@@ -85,6 +85,7 @@ static int cmd_p(char *args)
 static int cmd_x(char *args)
 {
     int N;
+    int32_t tmpAddr;
     char *tmpCharP = NULL;
     tmpCharP = strtok(args, " ");
     if(tmpCharP)
@@ -96,6 +97,12 @@ static int cmd_x(char *args)
     if(tmpCharP)
     {
         printf(" %s", tmpCharP);
+        tmpAddr = atoi(tmpCharP);
+        printf(" %x", tmpAddr);
+    }
+    else
+    {
+        printf("Error: input error!!\n");
     }
     return 0;
 }
