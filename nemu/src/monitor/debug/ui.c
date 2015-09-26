@@ -84,6 +84,7 @@ static int cmd_p(char *args)
 
 static int cmd_x(char *args)
 {
+    printf("%s\n", args);
     return 0;
 }
 
