@@ -117,7 +117,8 @@ static int cmd_x(char *args)
         int i = 0;
         for(i = 0; i < N; i++)
         {
-        int j = 0;
+            printf("the %d line:  ", i);
+            int j = 0;
             for(j = 0; j < 4; j++)
             {
                 printf("%x\t", hwaddr_read(tmpAddr + i * 4 + j, 1));
