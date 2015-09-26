@@ -96,6 +96,7 @@ static int cmd_x(char *args)
     tmpCharP = strtok(NULL, " ");
     if(tmpCharP)
     {
+        printf("%s", tmpCharP);
         tmpAddr = atoi(tmpCharP);
         printf("N:%d, addr:%x\n", N, tmpAddr);
     }
