@@ -84,7 +84,6 @@ static int cmd_p(char *args)
 
 static int cmd_x(char *args)
 {
-    printf("%s\n", args);
     int N = 0;
     int tmpAddr;
     char *tmpCharP = NULL;
@@ -105,6 +104,7 @@ static int cmd_x(char *args)
         }
         tmpAddr = atoi(tmpCharP);
         printf("N:%d, addr:%d\n", N, tmpAddr);
+        hwaddr_read(tmpAddr, N);
     }
     else
     {
