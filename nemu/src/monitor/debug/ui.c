@@ -104,7 +104,19 @@ static int cmd_x(char *args)
             int i = strlen(tmpCharP) - 1;
             for( ; i > 1; i--)
             {
-                tmpAddr += (tmpCharP[i] - '0') * tmpPow;
+                char c = tmpCharP[i];
+                if(c >= '0' && c <= '9')
+                    c -= '0';
+                else if(c >= 'a' && c <= 'f')
+                    c = c -'a' + 10;
+                else if(c >= 'A' && c <= 'F')
+                    c = c - 'A' + 10;
+                else
+                {
+                    printf("input Error!\n");
+                    return 0;
+                }
+                tmpAddr += (c - '0') * tmpPow;
                 tmpPow *= 16;
             }
         }
