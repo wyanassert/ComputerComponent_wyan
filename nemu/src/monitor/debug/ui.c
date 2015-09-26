@@ -99,13 +99,13 @@ static int cmd_x(char *args)
         {
             if(tmpCharP[0] == '0' && tmpCharP[1] == 'x')
             {
-                tmpCharP += 2;
+
             }
         }
         tmpAddr = atoi(tmpCharP);
         printf("N:%d, addr:0x%d\n", N, tmpAddr);
         printf("0x100000:%d", 0x100000);
-        hwaddr_read(0x100000, 4);
+        printf("%x", hwaddr_read(0x100000, 4));
     }
     else
     {
