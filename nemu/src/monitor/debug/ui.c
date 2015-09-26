@@ -2,6 +2,7 @@
 #include "monitor/expr.h"
 #include "monitor/watchpoint.h"
 #include "nemu.h"
+#include "math.h"
 
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -95,17 +96,25 @@ static int cmd_x(char *args)
     tmpCharP = strtok(NULL, " ");
     if(tmpCharP)
     {
-        if(strlen(tmpCharP) > 1)
-        {
-            if(tmpCharP[0] == '0' && tmpCharP[1] == 'x')
-            {
 
+        if(strlen(tmpCharP) > 1 && tmpCharP[0] == '0' && tmpCharP[1] == 'x')
+        {
+            tmpAddr = 0;
+            int tmpPow = 1;
+            int i = strlen(tmpCharP) - 1;
+            for( ; i > 1; i--)
+            {
+                tmpAddr += (tmpCharP[i] - '0') * tmpPow;
+                tmpPow *= 16;
             }
         }
-        tmpAddr = atoi(tmpCharP);
+        else
+        {
+            tmpAddr = atoi(tmpCharP);
+        }
+
         printf("N:%d, addr:0x%d\n", N, tmpAddr);
-        printf("0x100000:%d", 0x100000);
-        printf("%x", hwaddr_read(0x100000, 4));
+        //printf("%x", hwaddr_read(0x100000, 4));
     }
     else
     {
