@@ -114,7 +114,7 @@ static int cmd_x(char *args)
         }
 
         printf("N:%d, addr:0x%x\n", N, tmpAddr);
-        //printf("%x", hwaddr_read(0x100000, 4));
+        printf("%x\n", hwaddr_read(0x100000, 4));
     }
     else
     {
