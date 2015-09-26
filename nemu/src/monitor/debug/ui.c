@@ -56,9 +56,9 @@ static int cmd_info(char *args)
     if(strlen(args) == 1 && args[0] == 'r')
     {
         printf("exa:%x  ax:%x  ah:%x  al:%x\n", cpu.eax, cpu.gpr[0]._16, cpu.gpr[0]._8[0], cpu.gpr[0]._8[1]);
-        printf("edx:%x\n", cpu.edx);
-        printf("ecx:%x\n", cpu.ecx);
-        printf("ebx:%x\n", cpu.ebx);
+        printf("edx:%x  dx:%x  dh:%x  dl:%x\n", cpu.edx, cpu.gpr[1]._16, cpu.gpr[1]._8[0], cpu.gpr[1]._8[1]);
+        printf("ecx:%x  cx:%x  ch:%x  cl:%x\n", cpu.ecx, cpu.gpr[2]._16, cpu.gpr[2]._8[0], cpu.gpr[2]._8[1]);
+        printf("ebx:%x  bx:%x  bh:%x  bl:%x\n", cpu.ebx, cpu.gpr[3]._16, cpu.gpr[3]._8[0], cpu.gpr[3]._8[1]);
         printf("ebp:%x\n", cpu.ebp);
         printf("esi:%x\n", cpu.esi);
         printf("edi:%x\n", cpu.edi);
