@@ -7,6 +7,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+extern CPU_state cpu;
 void cpu_exec(uint32_t);
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
@@ -50,6 +51,24 @@ static int cmd_si(char *args)
     return 0;
 }
 
+static int cmd_info(char *args)
+{
+    if(strlen(args) == 1 && args[0] == 'r')
+    {
+        printf("exa:%x", cpu.eax);
+        return 0;
+    }
+    else if(strlen(args) == 1 && args[0] == 'w')
+    {
+        return 0;
+    }
+    else
+    {
+        printf("ETRROR: unexpected input!!!");
+        return 0;
+    }
+}
+
 static struct
 {
     char *name;
@@ -60,7 +79,8 @@ static struct
     { "help", "Display informations about all supported commands", cmd_help },
     { "c", "Continue the execution of the program", cmd_c },
     { "q", "Exit NEMU", cmd_q },
-    {"si", "single step", cmd_si},
+    { "si", "single step", cmd_si},
+    { "info", "print state information of program", cmd_info},
 
     /* TODO: Add more commands */
 
@@ -96,6 +116,8 @@ static int cmd_help(char *args)
     }
     return 0;
 }
+
+
 
 void ui_mainloop()
 {
