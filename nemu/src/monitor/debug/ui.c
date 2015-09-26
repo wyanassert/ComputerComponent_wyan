@@ -84,7 +84,19 @@ static int cmd_p(char *args)
 
 static int cmd_x(char *args)
 {
-    printf("%s\n", args);
+    int N;
+    char *tmpCharP = NULL;
+    tmpCharP = strtok(args, " ");
+    if(tmpCharP)
+    {
+        N = atoi(tmpCharP);
+        printf("%s %d", tmpCharP, N);
+    }
+    tmpCharP = strtok(NULL, " ");
+    if(tmpCharP)
+    {
+        printf(" %s", tmpCharP);
+    }
     return 0;
 }
 
