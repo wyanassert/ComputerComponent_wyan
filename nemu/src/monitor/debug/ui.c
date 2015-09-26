@@ -113,7 +113,7 @@ static int cmd_x(char *args)
             tmpAddr = atoi(tmpCharP);
         }
 
-        printf("N:%d, addr:0x%d\n", N, tmpAddr);
+        printf("N:%d, addr:0x%x\n", N, tmpAddr);
         //printf("%x", hwaddr_read(0x100000, 4));
     }
     else
