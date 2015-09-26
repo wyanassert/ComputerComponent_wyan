@@ -86,7 +86,7 @@ static int cmd_x(char *args)
 {
     printf("%s\n", args);
     int N = 0;
-    int32_t tmpAddr;
+    int tmpAddr;
     char *tmpCharP = NULL;
     tmpCharP = strtok(args, " ");
     if(tmpCharP)
@@ -98,7 +98,7 @@ static int cmd_x(char *args)
     {
         printf("%s", tmpCharP);
         tmpAddr = atoi(tmpCharP);
-        printf("N:%d, addr:%x\n", N, tmpAddr);
+        printf("N:%d, addr:%d\n", N, tmpAddr);
     }
     else
     {
