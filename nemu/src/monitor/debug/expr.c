@@ -103,6 +103,7 @@ static bool make_token(char *e)
                     tokens[nr_token].type = rules[iRule].token_type;
                     for(iRule = 0; iRule < substr_len; iRule++)
                         tokens[nr_token].str[iRule] = substr_start[iRule];
+                    printf("case1:%d\n", nr_token);
                     tokens[nr_token].str[iRule] = '\0';
                     nr_token++;
                     break;
@@ -110,6 +111,7 @@ static bool make_token(char *e)
                     break;
                 case '+': case '-': case '*': case '/': case EQ: case'(': case ')':
                     tokens[nr_token].type = rules[iRule].token_type;
+                    printf("case2:%d\n", nr_token);
                     nr_token++;
                     break;
                 default:
