@@ -221,9 +221,9 @@ bool check_parentheses(int p, int q)
     {
         printf("%d %s\n", tmpi, tokens[tmpi].str);
         if(tokens[tmpi].type == '(')
-            count++;
+            printf("Count: %d\n", ++count);
         else if(tokens[tmpi].type == ')')
-            count--;
+            printf("Count %d\n", --count);
     }
 
     count = count;
