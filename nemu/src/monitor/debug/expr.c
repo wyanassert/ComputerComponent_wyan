@@ -95,12 +95,12 @@ static bool make_token(char *e)
                  * to record the token in the array ``tokens''. For certain
                  * types of tokens, some extra actions should be performed.
                  */
-                printf("reachhere3\n");
+                printf("reachhere3 switch:%d\n",rules[i].token_type);
                 int iRule = 0;
-                switch(rules[iRule].token_type)
+                switch(rules[i].token_type)
                 {
                 case IDENTIFIER:case REG:
-                    tokens[nr_token].type = rules[iRule].token_type;
+                    tokens[nr_token].type = rules[i].token_type;
                     for(iRule = 0; iRule < substr_len; iRule++)
                         tokens[nr_token].str[iRule] = substr_start[iRule];
                     printf("case1:%d\n", nr_token);
@@ -110,7 +110,7 @@ static bool make_token(char *e)
                 case NOTYPE:
                     break;
                 case '+': case '-': case '*': case '/': case EQ: case'(': case ')':
-                    tokens[nr_token].type = rules[iRule].token_type;
+                    tokens[nr_token].type = rules[i].token_type;
                     printf("case2:%d\n", nr_token);
                     nr_token++;
                     break;
