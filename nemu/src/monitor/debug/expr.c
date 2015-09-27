@@ -446,6 +446,10 @@ int intFromReg(char *reg)
             return 0;
         }
     }
+    else if(*(tmpC) == 'i' || *(tmpC) == 'I')
+    {
+            return cpu.eip;
+    }
     else
     {
         printf("Error:input register error!\n");
