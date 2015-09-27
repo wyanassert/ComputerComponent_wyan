@@ -6,6 +6,8 @@
 #include <sys/types.h>
 #include <regex.h>
 
+extern CPU_state cpu;
+
 enum
 {
     NOTYPE = 256, EQ, REG,IDENTIFIER
@@ -74,6 +76,7 @@ int nr_token;
 bool check_parentheses(int p, int q);
 int eval(int p, int q);
 int posiOfDomiOper(int p, int q);
+int intFromReg(char *reg);
 
 static bool make_token(char *e)
 {
@@ -101,7 +104,8 @@ static bool make_token(char *e)
                 int iRule = 0;
                 switch(rules[i].token_type)
                 {
-                case IDENTIFIER:case REG:
+                case IDENTIFIER:
+                case REG:
                     tokens[nr_token].type = rules[i].token_type;
                     for(iRule = 0; iRule < substr_len; iRule++)
                         tokens[nr_token].str[iRule] = substr_start[iRule];
@@ -110,7 +114,13 @@ static bool make_token(char *e)
                     break;
                 case NOTYPE:
                     break;
-                case '+': case '-': case '*': case '/': case EQ: case'(': case ')':
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                case EQ:
+                case'(':
+                case ')':
                     tokens[nr_token].type = rules[i].token_type;
                     nr_token++;
                     break;
@@ -146,17 +156,23 @@ uint32_t expr(char *e, bool *success)
     {
         switch(tokens[i].type)
         {
-            case IDENTIFIER:case REG:
+        case IDENTIFIER:
+        case REG:
             printf("number or register %s\n", tokens[i].str);
             break;
-            case '+': case '-': case '*': case '/': case'(': case ')':
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+        case'(':
+        case ')':
             printf("%c\n", tokens[i].type);
             break;
-            case EQ:
+        case EQ:
             printf("==\n");
             break;
-            default:
-                printf("token clarify error\n");
+        default:
+            printf("token clarify error\n");
         }
     }
     int result = eval(0, nr_token - 1);
@@ -228,10 +244,14 @@ int eval(int p, int q)
         int var2 = eval(opPosi + 1, q);
         switch(tokens[opPosi].type)
         {
-            case '+':return var1 + var2;
-            case '-':return var1 - var2;
-            case '*':return var1 * var2;
-            case '/':return var1 / var2;
+        case '+':
+            return var1 + var2;
+        case '-':
+            return var1 - var2;
+        case '*':
+            return var1 * var2;
+        case '/':
+            return var1 / var2;
         }
         return 0;
     }
@@ -281,4 +301,155 @@ int posiOfDomiOper(int p, int q)
             result = i;
     }
     return result;
+}
+
+int intFromReg(char *reg)
+{
+    char *tmpC;
+    int i = 0;
+    if(strlen(reg) == 2)
+    {
+        i = 1;
+        tmpC = reg;
+    }
+    else
+    {
+        i = 0;
+        tmpC = reg + 1;
+    }
+
+    if(*(tmpC) == 'a' || *(tmpC) == 'A')
+    {
+        if(*(tmpC + 1) == 'x' || *(tmpC + 1) == 'X')
+        {
+            if(i)//eax
+                return cpu.gpr[0]._16;
+            else//ax
+                return cpu.eax;
+        }
+        else if(*(tmpC + 1) == 'h' || *(tmpC + 1) == 'H')//ah
+        {
+            return cpu.gpr[0]._8[1];
+        }
+        else if(*(tmpC + 1) == 'l' || *(tmpC + 1) == 'L')//al
+        {
+            return cpu.gpr[0]._8[0];
+        }
+        else
+        {
+            printf("Error:input register error!\n");
+            return 0;
+        }
+    }
+    else if(*(tmpC) == 'c' || *(tmpC) == 'C')
+    {
+        if(*(tmpC + 1) == 'x'|| *(tmpC + 1) == 'X')
+        {
+            if(i)//cx
+                return cpu.gpr[1]._16;
+            else//ecx
+                return cpu.ecx;
+        }
+        else if(*(tmpC + 1) == 'h' || *(tmpC + 1) == 'H')//ch
+        {
+            return cpu.gpr[1]._8[1];
+        }
+        else if(*(tmpC + 1) == 'l' || *(tmpC + 1) == 'L')//cl
+        {
+            return cpu.gpr[1]._8[0];
+        }
+        else
+        {
+            printf("Error:input register error!\n");
+            return 0;
+        }
+    }
+    else if(*(tmpC) == 'd' || *(tmpC) == 'D')
+    {
+        if(*(tmpC + 1) == 'x'||*(tmpC + 1) == 'X')
+        {
+            if(i)//dx
+                return cpu.gpr[2]._16;
+            else//edx
+                return cpu.edx;
+        }
+        else if(*(tmpC + 1) == 'h' || *(tmpC + 1) == 'H')//dh
+        {
+            return cpu.gpr[2]._8[1];
+        }
+        else if(*(tmpC + 1) == 'l' || *(tmpC + 1) == 'L')//dl
+        {
+            return cpu.gpr[2]._8[0];
+        }
+        else if(*(tmpC + 1) == 'i' || *(tmpC + 1) == 'I')
+        {
+            if(i)//di
+                return cpu.gpr[7]._16;
+            else//edi
+                return cpu.edi;
+        }
+        else
+        {
+            printf("Error:input register error!\n");
+            return 0;
+        }
+    }
+    else if(*(tmpC) == 'b' || *(tmpC) == 'B')
+    {
+        if(*(tmpC + 1) == 'x'||*(tmpC + 1) == 'X')
+        {
+            if(i)//bx
+                return cpu.gpr[3]._16;
+            else//ebx
+                return cpu.ebx;
+        }
+        else if(*(tmpC + 1) == 'h' || *(tmpC + 1) == 'H')//bh
+        {
+            return cpu.gpr[3]._8[1];
+        }
+        else if(*(tmpC + 1) == 'l' || *(tmpC + 1) == 'L')//bl
+        {
+            return cpu.gpr[3]._8[0];
+        }
+        else if(*(tmpC + 1) == 'p' || *(tmpC + 1) == 'P')
+        {
+            if(i)
+                return cpu.gpr[5]._16;
+            else
+                return cpu.ebp;
+        }
+        else
+        {
+            printf("Error:input register error!\n");
+            return 0;
+        }
+    }
+    else if(*(tmpC) == 's' || *(tmpC) == 'S')
+    {
+        if(*(tmpC + 1) == 'p'||*(tmpC + 1) == 'P')
+        {
+            if(i)//sp
+                return cpu.gpr[4]._16;
+            else//esp
+                return cpu.esp;
+        }
+        else if(*(tmpC + 1) == 'i'||*(tmpC + 1) == 'I')
+        {
+            if(i)//si
+                return cpu.gpr[6]._16;
+            else//esp
+                return cpu.esi;
+        }
+        else
+        {
+            printf("Error:input register error!\n");
+            return 0;
+        }
+    }
+    else
+    {
+        printf("Error:input register error!\n");
+        return 0;
+    }
+
 }
