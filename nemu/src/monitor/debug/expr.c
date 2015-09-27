@@ -69,7 +69,11 @@ typedef struct token
 
 Token tokens[32];
 int nr_token;
+
+
 bool check_parentheses(int p, int q);
+int eval(int p, int q);
+
 static bool make_token(char *e)
 {
     int position = 0;
@@ -154,7 +158,7 @@ uint32_t expr(char *e, bool *success)
                 printf("token clarify error\n");
         }
     }
-
+    eval(0, nr_token - 1);
 
 
     //panic("please implement me");
