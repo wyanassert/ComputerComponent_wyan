@@ -163,7 +163,7 @@ uint32_t expr(char *e, bool *success)
     printf("result:%d\n", result);
 
     //panic("please implement me");
-    return 0;
+    return result;
 }
 
 

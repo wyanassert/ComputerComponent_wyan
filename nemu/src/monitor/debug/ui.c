@@ -98,7 +98,7 @@ static int cmd_x(char *args)
     tmpCharP = strtok(NULL, " ");
     if(tmpCharP)
     {
-
+        /*
         if(strlen(tmpCharP) > 1 && tmpCharP[0] == '0' && tmpCharP[1] == 'x')
         {
             tmpAddr = 0;
@@ -125,8 +125,9 @@ static int cmd_x(char *args)
         else
         {
             tmpAddr = atoi(tmpCharP);
-        }
-
+        }*/
+        bool success;
+        tmpAddr = expr(tmpCharP, &success);
         printf("N:%d, addr:0x%x\n", N, tmpAddr);
         int i = 0;
         for(i = 0; i < N; i++)
@@ -140,6 +141,7 @@ static int cmd_x(char *args)
             printf("\n");
         }
     }
+
     else
     {
         printf("Error: input error!!\n");
