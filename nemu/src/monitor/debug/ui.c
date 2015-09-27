@@ -95,7 +95,7 @@ static int cmd_x(char *args)
     {
         N = atoi(tmpCharP);
     }
-    tmpCharP = strtok(NULL, " ");
+    tmpCharP = tmpCharP + strlen(tmpCharP) + 1;
     if(tmpCharP)
     {
         /*
