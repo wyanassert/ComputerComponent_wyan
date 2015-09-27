@@ -219,10 +219,11 @@ bool check_parentheses(int p, int q)
     int tmpi = p;
     for(; tmpi < q; tmpi++)
     {
+        printf("%d %s\n", tmpi, tokens[tmpi].str);
         if(tokens[tmpi].type == '(')
             count++;
         else if(tokens[tmpi].type == ')')
-            count --;
+            count--;
 
     }
     if(count)
