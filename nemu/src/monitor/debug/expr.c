@@ -73,6 +73,7 @@ int nr_token;
 
 bool check_parentheses(int p, int q);
 int eval(int p, int q);
+int posiOfDomiOper(int p, int q);
 
 static bool make_token(char *e)
 {
@@ -192,6 +193,8 @@ int eval(int p, int q)
     else
     {
         //we should do more here
+
+
         return 0;
     }
 }
@@ -208,11 +211,29 @@ bool check_parentheses(int p, int q)
             count++;
         else if(tokens[i].type == ')')
             count --;
-        if(count < 0)
-            return false;
     }
     if(count)
         return false;
     else
         return true;
+}
+
+int posiOfDomiOper(int p, int q)
+{
+    int result = -1;
+    int i = p + 1;
+    int count = 0;
+    for( ; i < q - 1; i++)
+    {
+        if(tokens[i].type == '(')
+            count++;
+        else if(tokens[i].type == ')')
+            count--;
+
+        if(!count && (tokens[i].type == '+'|| tokens[i].type == '-'))
+            result = i;
+        else if(!count && (tokens[i].type == '*'|| tokens[i].type == '/') && (tokens[result].type != '+') && (tokens[result].type != '-'))
+            result = i;
+    }
+    return result;
 }
