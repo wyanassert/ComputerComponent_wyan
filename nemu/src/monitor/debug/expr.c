@@ -217,7 +217,7 @@ bool check_parentheses(int p, int q)
         return false;
     int count = 0;
     int tmpi = p;
-    for(; tmpi < q; tmpi++)
+    for(; tmpi <= q; tmpi++)
     {
         printf("%d %s\n", tmpi, tokens[tmpi].str);
         if(tokens[tmpi].type == '(')
