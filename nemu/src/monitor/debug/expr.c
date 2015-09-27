@@ -95,20 +95,20 @@ static bool make_token(char *e)
                  * to record the token in the array ``tokens''. For certain
                  * types of tokens, some extra actions should be performed.
                  */
-                int i = 0;
-                switch(rules[i].token_type)
+                int iRule = 0;
+                switch(rules[iRule].token_type)
                 {
                 case IDENTIFIER:case REG:
-                    tokens[nr_token].type = rules[i].token_type;
-                    for(i = 0; i < substr_len; i++)
-                        tokens[nr_token].str[i] = substr_start[i];
-                    tokens[nr_token].str[i] = '\0';
+                    tokens[nr_token].type = rules[iRule].token_type;
+                    for(iRule = 0; iRule < substr_len; iRule++)
+                        tokens[nr_token].str[iRule] = substr_start[iRule];
+                    tokens[nr_token].str[iRule] = '\0';
                     nr_token++;
                     break;
                 case NOTYPE:
                     break;
                 case '+': case '-': case '*': case '/': case EQ: case'(': case ')':
-                    tokens[nr_token].type = rules[i].token_type;
+                    tokens[nr_token].type = rules[iRule].token_type;
                     nr_token++;
                     break;
                 default:
