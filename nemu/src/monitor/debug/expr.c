@@ -219,7 +219,7 @@ int eval(int p, int q)
             }
             else
             {
-                return 0;
+                return intFromReg(tokens[q].str + 1);
             }
         }
         else
