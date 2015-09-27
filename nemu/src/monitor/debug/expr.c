@@ -160,7 +160,7 @@ uint32_t expr(char *e, bool *success)
         }
     }
     int result = eval(0, nr_token - 1);
-    printf("result:%d\n", result);
+    printf("result:%d   (%x)16\n", result, result);
 
     //panic("please implement me");
     return result;
