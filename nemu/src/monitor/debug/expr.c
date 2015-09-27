@@ -120,11 +120,9 @@ static bool make_token(char *e)
         if(i == NR_REGEX)
         {
             printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
-            printf("return 0\n");
             return false;
         }
     }
-    printf("return 1\n");
     return true;
 }
 
@@ -133,10 +131,30 @@ uint32_t expr(char *e, bool *success)
     if(!make_token(e))
     {
         *success = false;
+        printf("Error:make_token() func run error\n");
         return 0;
     }
 
     /* TODO: Insert codes to evaluate the expression. */
+    int i = 0;
+    for(i = 0; i < nr_token; i++)
+    {
+        switch(tokens[i].type)
+        {
+            case IDENTIFIER:case REG:
+            printf("number or register %s\n", tokens[i].str);
+            break;
+            case '+': case '-': case '*': case '/': case'(': case ')':
+            printf("%c\n", tokens[i].type);
+            break;
+            case EQ:
+            printf("==\n");
+            break;
+            default:
+                printf("token clarify error\n");
+        }
+    }
+
     //panic("please implement me");
     return 0;
 }
