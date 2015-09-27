@@ -216,13 +216,14 @@ bool check_parentheses(int p, int q)
     if(tokens[p].type != '(' || tokens[q].type != ')')
         return false;
     int count = 0;
-    int i = p;
-    for(; i < q; i++)
+    int tmpi = p;
+    for(; tmpi < q; tmpi++)
     {
-        if(tokens[i].type == '(')
+        if(tokens[tmpi].type == '(')
             count++;
-        else if(tokens[i].type == ')')
+        else if(tokens[tmpi].type == ')')
             count --;
+
     }
     if(count)
         return false;
