@@ -103,11 +103,13 @@ static bool make_token(char *e)
                     for(i = 0; i < substr_len; i++)
                         tokens[nr_token].str[i] = substr_start[i];
                     tokens[nr_token].str[i] = '\0';
+                    nr_token++;
                     break;
                 case NOTYPE:
                     break;
                 case '+':case '-': case '*': case '/': case EQ: case'(': case ')':
                     tokens[nr_token].type = rules[i].token_type;
+                    nr_token++;
                     break;
                 default:
                     panic("please implement me, make_token()  switch{}");
