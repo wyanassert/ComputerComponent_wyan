@@ -77,13 +77,11 @@ static bool make_token(char *e)
     regmatch_t pmatch;
 
     nr_token = 0;
-    printf("reach here 1\n");
     while(e[position] != '\0')
     {
         /* Try all rules one by one. */
         for(i = 0; i < NR_REGEX; i ++)
         {
-            printf("reach Heare2\n");
             if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0)
             {
                 char *substr_start = e + position;
@@ -95,7 +93,6 @@ static bool make_token(char *e)
                  * to record the token in the array ``tokens''. For certain
                  * types of tokens, some extra actions should be performed.
                  */
-                printf("reachhere3 switch:%d\n",rules[i].token_type);
                 int iRule = 0;
                 switch(rules[i].token_type)
                 {
@@ -103,7 +100,6 @@ static bool make_token(char *e)
                     tokens[nr_token].type = rules[i].token_type;
                     for(iRule = 0; iRule < substr_len; iRule++)
                         tokens[nr_token].str[iRule] = substr_start[iRule];
-                    printf("case1:%d\n", nr_token);
                     tokens[nr_token].str[iRule] = '\0';
                     nr_token++;
                     break;
@@ -111,7 +107,6 @@ static bool make_token(char *e)
                     break;
                 case '+': case '-': case '*': case '/': case EQ: case'(': case ')':
                     tokens[nr_token].type = rules[i].token_type;
-                    printf("case2:%d\n", nr_token);
                     nr_token++;
                     break;
                 default:
