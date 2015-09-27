@@ -240,9 +240,9 @@ bool check_parentheses(int p, int q)
 int posiOfDomiOper(int p, int q)
 {
     int result = -1;
-    int i = p + 1;
+    int i = p;
     int count = 0;
-    for( ; i < q; i++)
+    for( ; i <= q; i++)
     {
         if(tokens[i].type == '(')
             count++;
