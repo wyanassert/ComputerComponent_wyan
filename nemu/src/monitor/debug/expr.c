@@ -77,17 +77,18 @@ static bool make_token(char *e)
     regmatch_t pmatch;
 
     nr_token = 0;
-
+    printf("reach here 1\n");
     while(e[position] != '\0')
     {
         /* Try all rules one by one. */
         for(i = 0; i < NR_REGEX; i ++)
         {
+            printf("reach Heare2\n");
             if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0)
             {
                 char *substr_start = e + position;
                 int substr_len = pmatch.rm_eo;
-
+                printf("reachhere3\n");
                 //Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
                 position += substr_len;
 
