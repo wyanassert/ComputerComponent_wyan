@@ -178,7 +178,33 @@ int eval(int p, int q)
     {
         if(tokens[q].type == IDENTIFIER || tokens[q].type == REG)
         {
-            return atoi(tokens[q].str);
+            if(tokens[q].type == IDENTIFIER)
+            {
+                if(tokens[q].str[0] == '0' && tokens[q].str[1] == 'x')
+                {
+                    int i = strlen(tokens[q].str) - 1;
+                    int tmp16 = 1;
+                    int tmpResult = 0;
+                    for( ; i > 1; i--)
+                    {
+                        char c = tokens[q].str[i];
+                        if(c >= '0' && c <= '9')
+                            c = c- '0';
+                        if(c >= 'a' && c <= 'f')
+                            c = c - 'a' + 10;
+                        if(c >= 'A' && c <= 'F')
+                            c = c -'A' + 10;
+                        tmpResult = tmpResult + c * tmp16;
+                        tmp16 *= 16;
+                    }
+                    return tmpResult;
+                }
+                return atoi(tokens[q].str);
+            }
+            else
+            {
+                return 0;
+            }
         }
         else
         {
