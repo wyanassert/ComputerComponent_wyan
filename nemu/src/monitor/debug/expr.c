@@ -88,7 +88,6 @@ static bool make_token(char *e)
             {
                 char *substr_start = e + position;
                 int substr_len = pmatch.rm_eo;
-                printf("reachhere3\n");
                 //Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
                 position += substr_len;
 
@@ -96,6 +95,7 @@ static bool make_token(char *e)
                  * to record the token in the array ``tokens''. For certain
                  * types of tokens, some extra actions should be performed.
                  */
+                printf("reachhere3\n");
                 int iRule = 0;
                 switch(rules[iRule].token_type)
                 {
