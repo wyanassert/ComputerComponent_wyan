@@ -234,7 +234,7 @@ bool check_parentheses(int p, int q)
     }
     else
     {
-        printf("return true");
+        printf("return true\n");
         return true;
     }
 }
