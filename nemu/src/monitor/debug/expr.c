@@ -31,7 +31,6 @@ static struct rule
     {"-", '-'},
     {"\\*", '*'},
     {"/", '/'},
-    //{"\\$", '$'},
     {"\\$[a-zA-Z]{3}", REG},
     {"\\w+", IDENTIFIER},
     {"\\(",'('},
@@ -107,7 +106,7 @@ static bool make_token(char *e)
                     break;
                 case NOTYPE:
                     break;
-                case '+':case '-': case '*': case '/': case EQ: case'(': case ')': case '$':
+                case '+':case '-': case '*': case '/': case EQ: case'(': case ')':
                     tokens[nr_token].type = rules[i].token_type;
                     break;
                 default:
