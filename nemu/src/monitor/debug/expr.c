@@ -193,8 +193,20 @@ int eval(int p, int q)
     else
     {
         //we should do more here
-
-
+        int opPosi = posiOfDomiOper(p, q);
+        if(opPosi == -1)
+        {
+            printf("Error : dominant operator find error\n");
+        }
+        int var1 = eval(p, opPosi - 1);
+        int var2 = eval(opPosi + 1, q);
+        switch(tokens[opPosi].type)
+        {
+            case '+':return var1 + var2;
+            case '-':return var1 - var2;
+            case '*':return var1 * var2;
+            case '/':return var1 / var2;
+        }
         return 0;
     }
 }
@@ -204,8 +216,8 @@ bool check_parentheses(int p, int q)
     if(tokens[p].type != '(' || tokens[q].type != ')')
         return false;
     int count = 0;
-    int i = p + 1;
-    for(; i < q - 1; i++)
+    int i = p;
+    for(; i < q; i++)
     {
         if(tokens[i].type == '(')
             count++;
