@@ -159,8 +159,8 @@ uint32_t expr(char *e, bool *success)
                 printf("token clarify error\n");
         }
     }
-    eval(0, nr_token - 1);
-
+    int result = eval(0, nr_token - 1);
+    printf("result:%d\n", result);
 
     //panic("please implement me");
     return 0;
