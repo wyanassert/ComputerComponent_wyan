@@ -32,7 +32,7 @@ static struct rule
     {"\\*", '*'},
     {"/", '/'},
     {"\\$[a-zA-Z]{3}", REG},
-    {"\\w+", IDENTIFIER},
+    {"\\w+|0x[a-fA-F0-9]+", IDENTIFIER},
     {"\\(",'('},
     {"\\)",')'}
 };
