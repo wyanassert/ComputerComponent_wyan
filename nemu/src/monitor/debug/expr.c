@@ -322,9 +322,9 @@ int intFromReg(char *reg)
     {
         if(*(tmpC + 1) == 'x' || *(tmpC + 1) == 'X')
         {
-            if(i)//eax
+            if(i)//ax
                 return cpu.gpr[0]._16;
-            else//ax
+            else//eax
                 return cpu.eax;
         }
         else if(*(tmpC + 1) == 'h' || *(tmpC + 1) == 'H')//ah
@@ -437,7 +437,7 @@ int intFromReg(char *reg)
         {
             if(i)//si
                 return cpu.gpr[6]._16;
-            else//esp
+            else//esi
                 return cpu.esi;
         }
         else
