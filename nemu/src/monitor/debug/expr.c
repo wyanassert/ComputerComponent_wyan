@@ -228,9 +228,15 @@ bool check_parentheses(int p, int q)
 
     count = count;
     if(count)
+    {
+        printf("return false\n");
         return false;
+    }
     else
+    {
+        printf("return true");
         return true;
+    }
 }
 
 int posiOfDomiOper(int p, int q)
