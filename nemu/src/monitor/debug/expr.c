@@ -224,8 +224,9 @@ bool check_parentheses(int p, int q)
             count++;
         else if(tokens[tmpi].type == ')')
             count--;
-
     }
+
+    count = count;
     if(count)
         return false;
     else
