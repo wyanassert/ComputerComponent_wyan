@@ -1,5 +1,5 @@
 #include "nemu.h"
-
+#include "stdlib.h"
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -69,7 +69,7 @@ typedef struct token
 
 Token tokens[32];
 int nr_token;
-
+bool check_parentheses(int p, int q);
 static bool make_token(char *e)
 {
     int position = 0;
@@ -155,7 +155,58 @@ uint32_t expr(char *e, bool *success)
         }
     }
 
+
+
     //panic("please implement me");
     return 0;
 }
 
+
+int eval(int p, int q)
+{
+    if(p > q)
+    {
+        printf("Error:bad expersion!\n");
+        return 0;
+    }
+    else if(p == q)
+    {
+        if(tokens[q].type == IDENTIFIER || tokens[q].type == REG)
+        {
+            return atoi(tokens[q].str);
+        }
+        else
+        {
+            printf("Error:while p == q, result should be a number\n");
+            return 0;
+        }
+    }
+    else if(check_parentheses(p, q))
+    {
+        return eval(p + 1, q + 1);
+    }
+    else
+    {
+        //we should do more here
+        return 0;
+    }
+}
+
+bool check_parentheses(int p, int q)
+{
+    if(tokens[p].type != '(' || tokens[q].type != ')')
+        return false;
+    int count = 0;
+    int i = p + 1;
+    for(; i < q - 1; i++)
+    {
+        if(tokens[i].type == '(')
+            count++;
+        else if(tokens[i].type == ')')
+            count --;
+    }
+    if(count)
+        return false;
+    else
+        return true;
+}
