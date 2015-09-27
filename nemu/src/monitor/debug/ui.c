@@ -80,6 +80,10 @@ static int cmd_info(char *args)
 
 static int cmd_p(char *args)
 {
+    bool success = false;
+    expr(args, &success);
+    if(!success)
+        printf("Error:input error");
     return 0;
 }
 
