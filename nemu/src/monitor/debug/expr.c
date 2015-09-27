@@ -221,20 +221,18 @@ bool check_parentheses(int p, int q)
     {
         printf("%d %s\n", tmpi, tokens[tmpi].str);
         if(tokens[tmpi].type == '(')
-            printf("Count: %d\n", ++count);
+            ++count;
         else if(tokens[tmpi].type == ')')
-            printf("Count %d\n", --count);
+            --count;
     }
 
     count = count;
     if(count)
     {
-        printf("return false\n");
         return false;
     }
     else
     {
-        printf("return true\n");
         return true;
     }
 }
