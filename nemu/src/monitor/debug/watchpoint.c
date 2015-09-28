@@ -1,6 +1,6 @@
 #include "monitor/watchpoint.h"
 #include "monitor/expr.h"
-#include "stdlib.h"
+
 
 #define NR_WP 32
 
@@ -32,7 +32,7 @@ WP* new_wp()
     else
     {
         printf("watch point pool is empty, free_ == NULL now!\n");
-        exit(-1);
+        assert(0);
     }
     return NULL;
 }
