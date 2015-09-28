@@ -8,11 +8,14 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+#define NR_WP 32
+
 extern CPU_state cpu;
 void cpu_exec(uint32_t);
 extern int nemu_state;
 extern WP* new_wp();
 extern void free_wp(WP* );
+extern WP wp_list[NR_WP];
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets()
@@ -154,12 +157,28 @@ static int cmd_x(char *args)
 
 static int cmd_w(char *args)
 {
-
+    WP * tmp = new_wp();
+    if(!tmp)
+    {
+        printf("Error: can not produce a watchpoint\n");
+        return 0;
+    }
+    strcpy(tmp->expr, args);
+    bool success;
+    tmp->newValue = expr(args, &success);
+    tmp->oldValue = 0;
     return 0;
 }
 
 static int cmd_d(char *args)
 {
+    int n = atoi(args);
+    if(n < 0 || n >= 32)
+    {
+        printf("Args Error\n");
+        return 0;
+    }
+    free_wp(&(wp_list[n]));
     return 0;
 }
 
