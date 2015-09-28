@@ -10,6 +10,9 @@
 
 extern CPU_state cpu;
 void cpu_exec(uint32_t);
+extern int nemu_state;
+extern WP* new_wp();
+extern void free_wp(WP* );
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets()
@@ -149,6 +152,17 @@ static int cmd_x(char *args)
     return 0;
 }
 
+static int cmd_w(char *args)
+{
+
+    return 0;
+}
+
+static int cmd_d(char *args)
+{
+    return 0;
+}
+
 static struct
 {
     char *name;
@@ -161,8 +175,10 @@ static struct
     { "q", "Exit NEMU", cmd_q },
     { "si", "single step", cmd_si},
     { "info", "print state information of program", cmd_info},
-    {"p", "work out the value of an experssion", cmd_p},
-    {"x", "swap the memory", cmd_x},
+    { "p", "work out the value of an experssion", cmd_p},
+    { "x", "swap the memory", cmd_x},
+    { "w", "set watch point", cmd_w},
+    { "d", "delete NO.N watchpoint", cmd_d},
     /* TODO: Add more commands */
 
 };
