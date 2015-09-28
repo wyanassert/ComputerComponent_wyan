@@ -124,6 +124,10 @@ static bool make_token(char *e)
                 case '*':
                 case '/':
                 case EQ:
+                case UEQ:
+                case AND:
+                case OR:
+                case NOT:
                 case'(':
                 case ')':
                     tokens[nr_token].type = rules[i].token_type;
