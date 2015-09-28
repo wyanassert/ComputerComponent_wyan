@@ -94,7 +94,7 @@ static int cmd_p(char *args)
     int tmpResult = expr(args, &success);
     if(success)
     {
-        printf("result:(%d)10, (%x)16\n", tmpResult, tmpResult);
+        printf("result:(%d)10, (0x%x)16\n", tmpResult, tmpResult);
     }
     return 0;
 }
