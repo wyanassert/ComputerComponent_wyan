@@ -10,7 +10,7 @@ extern CPU_state cpu;
 
 enum
 {
-    NOTYPE = 256, EQ, REG,IDENTIFIER
+    NOTYPE = 256, EQ, UEQ, REG,IDENTIFIER
 
     /* TODO: Add more token types */
 
@@ -30,6 +30,7 @@ static struct rule
     {" +",	NOTYPE},				// spaces
     {"\\+", '+'},					// plus
     {"==", EQ},						// equal
+    {"!=", UEQ},
     {"-", '-'},
     {"\\*", '*'},
     {"/", '/'},
