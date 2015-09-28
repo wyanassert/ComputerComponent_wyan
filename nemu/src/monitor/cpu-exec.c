@@ -1,6 +1,8 @@
 #include "monitor/monitor.h"
 #include "cpu/helper.h"
 #include <setjmp.h>
+#include "monitor/watchpoint.h"
+#include "monitor/expr.h"
 
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
@@ -8,6 +10,9 @@
  * You can modify this value as you want.
  */
 #define MAX_INSTR_TO_PRINT 10
+
+extern WP* head;
+
 
 int nemu_state = STOP;
 
@@ -73,7 +78,21 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 		/* TODO: check watchpoints here. */
-
+        WP *tmp;
+        int tmpresult;
+        bool success;
+        for(tmp = head; tmp!=NULL; tmp = tmp->next)
+        {
+            tmpresult = expr(tmp->expr, &success);
+            if(success && tmpresult == tmp->newValue)
+            {
+                tmp->oldValue = tmp->newValue;
+                tmp->newValue = tmpresult;
+                printf("program pause because of watch point %d\n", tmp->NO);
+                printf("wp'expersdsion: %s   oldValue:%d  newValue:%d\n", tmp->expr, tmp->oldValue, tmp->newValue);
+                nemu_state = STOP;
+            }
+        }
 
 		if(nemu_state != RUNNING) { return; }
 	}
