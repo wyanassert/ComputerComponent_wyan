@@ -30,10 +30,10 @@ static struct rule
     {" +",	NOTYPE},				// spaces
     {"\\+", '+'},					// plus
     {"==", EQ},						// equal
-   // {"!=", UEQ},
-   // {"&&", AND},
-   // {"||", OR},
-   // {"!", NOT},
+    {"!=", UEQ},
+    {"&&", AND},
+    {"||", OR},
+    {"!", NOT},
     {"-", '-'},
     {"\\*", '*'},
     {"/", '/'},
@@ -260,6 +260,14 @@ int eval(int p, int q)
             return var1 * var2;
         case '/':
             return var1 / var2;
+        case EQ:
+            return var1 == var2;
+        case UEQ:
+            return var1 != var2;
+        case AND:
+            return var1 && var2;
+        case OR:
+            return var1 || var2;
         }
         return 0;
     }
@@ -478,7 +486,7 @@ int rankOfOper(int oper)
         case EQ: return 3;
         case '+': case '-': return 4;
         case '*': case '/': return 5;
-        case NOT: return 6;
+        //case NOT: return 6;
         default:
             return -2;
     }
