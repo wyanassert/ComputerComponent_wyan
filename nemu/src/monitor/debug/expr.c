@@ -81,7 +81,7 @@ bool check_parentheses(int p, int q);
 int eval(int p, int q);
 int posiOfDomiOper(int p, int q);
 int intFromReg(char *reg);
-
+int rankOfOper(int oper);
 
 static bool make_token(char *e)
 {
@@ -292,6 +292,7 @@ int posiOfDomiOper(int p, int q)
     int result = -1;
     int i = p;
     int count = 0;
+    int oldRank = -1;
     for( ; i <= q; i++)
     {
         if(tokens[i].type == '(')
@@ -299,10 +300,11 @@ int posiOfDomiOper(int p, int q)
         else if(tokens[i].type == ')')
             count--;
 
-        if(!count && (tokens[i].type == '+'|| tokens[i].type == '-'))
+        if(rankOfOper(tokens[i].type) >= oldRank)
+        {
             result = i;
-        else if(!count && (tokens[i].type == '*'|| tokens[i].type == '/') && (tokens[result].type != '+') && (tokens[result].type != '-'))
-            result = i;
+            oldRank = rankOfOper(tokens[i].type);
+        }
     }
     return result;
 }
@@ -473,7 +475,7 @@ int rankOfOper(int oper)
         case '+': case '-': return 4;
         case '*': case '/': return 5;
         case NOT: return 6;
-        default: printf("%d operator doesn't exit\n", oper);
-            return 10;
+        default:
+            return -2;
     }
 }
