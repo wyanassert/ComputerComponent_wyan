@@ -30,10 +30,10 @@ static struct rule
     {" +",	NOTYPE},				// spaces
     {"\\+", '+'},					// plus
     {"==", EQ},						// equal
-    {"!=", UEQ},
-    {"&&", AND},
-    {"||", OR},
-    {"!", NOT},
+   // {"!=", UEQ},
+   // {"&&", AND},
+   // {"||", OR},
+   // {"!", NOT},
     {"-", '-'},
     {"\\*", '*'},
     {"/", '/'},
@@ -160,7 +160,7 @@ uint32_t expr(char *e, bool *success)
     }
     *success = true;
     /* TODO: Insert codes to evaluate the expression. */
-    int i = 0;
+    /*int i = 0;
     for(i = 0; i < nr_token; i++)
     {
         switch(tokens[i].type)
@@ -183,7 +183,7 @@ uint32_t expr(char *e, bool *success)
         default:
             printf("token clarify error\n");
         }
-    }
+    }*/
     int result = eval(0, nr_token - 1);
 
     //panic("please implement me");
