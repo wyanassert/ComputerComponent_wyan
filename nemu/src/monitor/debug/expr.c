@@ -10,7 +10,7 @@ extern CPU_state cpu;
 
 enum
 {
-    NOTYPE = 256, EQ, UEQ, REG,IDENTIFIER
+    NOTYPE = 256, EQ, UEQ, AND, OR,NOT, REG,IDENTIFIER
 
     /* TODO: Add more token types */
 
@@ -31,6 +31,9 @@ static struct rule
     {"\\+", '+'},					// plus
     {"==", EQ},						// equal
     {"!=", UEQ},
+    {"&&", AND},
+    {"||", OR},
+    {"!", NOT},
     {"-", '-'},
     {"\\*", '*'},
     {"/", '/'},
@@ -78,6 +81,7 @@ bool check_parentheses(int p, int q);
 int eval(int p, int q);
 int posiOfDomiOper(int p, int q);
 int intFromReg(char *reg);
+
 
 static bool make_token(char *e)
 {
@@ -152,7 +156,7 @@ uint32_t expr(char *e, bool *success)
     }
 
     /* TODO: Insert codes to evaluate the expression. */
-    int i = 0;
+    /*int i = 0;
     for(i = 0; i < nr_token; i++)
     {
         switch(tokens[i].type)
@@ -175,7 +179,7 @@ uint32_t expr(char *e, bool *success)
         default:
             printf("token clarify error\n");
         }
-    }
+    }*/
     int result = eval(0, nr_token - 1);
 
     //panic("please implement me");
@@ -456,4 +460,20 @@ int intFromReg(char *reg)
         return 0;
     }
 
+}
+
+int rankOfOper(int oper)
+{
+    switch(oper)
+    {
+        case OR: return 0;
+        case AND: return 1;
+        case UEQ: return 2;
+        case EQ: return 3;
+        case '+': case '-': return 4;
+        case '*': case '/': return 5;
+        case NOT: return 6;
+        default: printf("%d operator doesn't exit\n", oper);
+            return 10;
+    }
 }
