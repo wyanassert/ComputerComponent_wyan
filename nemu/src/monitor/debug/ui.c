@@ -16,6 +16,7 @@ extern int nemu_state;
 extern WP* new_wp();
 extern void free_wp(WP* );
 extern WP wp_list[NR_WP];
+extern WP *head;
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets()
@@ -75,6 +76,9 @@ static int cmd_info(char *args)
     }
     else if(strlen(args) == 1 && args[0] == 'w')
     {
+        WP *tmp;
+        for(tmp = head; tmp; tmp = tmp->next)
+            printf("NO.%d,  expression:%s  old:%d  new:%d\n", tmp->NO, tmp->expr, tmp->oldValue, tmp->newValue);
         return 0;
     }
     else
