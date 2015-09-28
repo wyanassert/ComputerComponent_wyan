@@ -8,7 +8,9 @@ typedef struct watchpoint {
 	struct watchpoint *next;
 
 	/* TODO: Add more members if necessary */
-
+    char *expr[32];
+    int oldValue;
+    int newValue;
 
 } WP;
 
