@@ -277,9 +277,9 @@ int eval(int p, int q)
         case LOWER:
             return var1 < var2;
         case GEQ:
-            return 0;
+            return var1 >= var2;
         case LEQ:
-            return 0;
+            return var1;
         }
         return 0;
     }
