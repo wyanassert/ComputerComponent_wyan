@@ -129,6 +129,10 @@ static bool make_token(char *e)
                 case '/':
                 case EQ:
                 case UEQ:
+                case GREATER:
+                case LOWER:
+                case GEQ:
+                case LEQ:
                 case AND:
                 case OR:
                 case NOT:
