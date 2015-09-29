@@ -272,6 +272,14 @@ int eval(int p, int q)
             return var1 && var2;
         case OR:
             return var1 || var2;
+        case GREATER:
+            return var1 > var2;
+        case LOWER:
+            return var1 < var2;
+        case GEQ:
+            return 0;
+        case LEQ:
+            return 0;
         }
         return 0;
     }
@@ -488,8 +496,9 @@ int rankOfOper(int oper)
         case AND: return 1;
         case UEQ: return 2;
         case EQ: return 3;
-        case '+': case '-': return 4;
-        case '*': case '/': return 5;
+        case LEQ: case GEQ: case LOWER: case GREATER: return 4;
+        case '+': case '-': return 5;
+        case '*': case '/': return 6;
         //case NOT: return 6;
         default:
             return -2;
