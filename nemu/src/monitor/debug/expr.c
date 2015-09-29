@@ -33,7 +33,7 @@ static struct rule
     {"!=", UEQ},
     {"&&", AND},
     {"\\|\\|", OR},
-    {"\\>", GREATER},
+    {">", GREATER},
     //{"\\<", LOWER},
     //{"\\>=", GEQ},
     //{"\\<=", LEQ},
