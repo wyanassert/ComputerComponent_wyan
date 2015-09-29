@@ -74,7 +74,7 @@ void free_wp(WP *wp)
         wp->next = NULL;
         return ;
     }
-    for(tmp = free_; free_ -> next; tmp = tmp->next);
+    for(tmp = free_; tmp -> next; tmp = tmp->next);
     tmp->next = wp;
     wp->next = NULL;
     return ;
