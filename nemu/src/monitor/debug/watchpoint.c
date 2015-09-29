@@ -52,7 +52,7 @@ void free_wp(WP *wp)
     if(head == wp)
     {
         tmp = head;
-        head = NULL;
+        head = head->next;
     }
     else
     {
