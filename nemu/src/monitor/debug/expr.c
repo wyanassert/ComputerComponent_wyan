@@ -305,7 +305,10 @@ int eval(int p, int q)
             return var1 - var2;
         case '*':
             if(opPosi == p)
+            {
+                printf("reach here\n");
                 return hwaddr_read(var2, 1);
+            }
             else
                 return var1 * var2;
         case '/':
