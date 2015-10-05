@@ -289,6 +289,7 @@ int eval(int p, int q)
         {
             var2 = eval(opPosi + 1, q);
             var1 = var2;
+            printf("var2:%d\n", var2);
         }
         else
         {
