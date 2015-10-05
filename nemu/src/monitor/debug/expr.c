@@ -97,7 +97,7 @@ static bool make_token(char *e)
     while(e[position] != '\0')
     {
         /* Try all rules one by one. */
-        bool isMutiAddr = false;
+        bool isMutiAddr = true;
         for(i = 0; i < NR_REGEX; i ++)
         {
             if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0)
