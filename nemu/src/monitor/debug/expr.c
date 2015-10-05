@@ -251,7 +251,8 @@ int eval(int p, int q)
     else
     {
         //we should do more here
-        int opPosi = posiOfDomiOper(p, q);
+        int opPosi = -1;
+        opPosi = posiOfDomiOper(p, q);
         if(opPosi == -1)
         {
             printf("Error : dominant operator find error\n");
