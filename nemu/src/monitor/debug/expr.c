@@ -252,13 +252,15 @@ int eval(int p, int q)
     {
         //we should do more here
         int opPosi = -1;
+        int var1;
+        int var2;
         opPosi = posiOfDomiOper(p, q);
         if(opPosi == -1)
         {
             printf("Error : dominant operator find error\n");
         }
-        int var1 = eval(p, opPosi - 1);
-        int var2 = eval(opPosi + 1, q);
+        var1 = eval(p, opPosi - 1);
+        var2 = eval(opPosi + 1, q);
         //printf("opPosi: %d, var1:%d, vqr2 :%d", opPosi, var1, var2);
         switch(tokens[opPosi].type)
         {
