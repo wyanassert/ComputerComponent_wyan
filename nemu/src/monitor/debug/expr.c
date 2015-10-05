@@ -10,7 +10,7 @@ extern CPU_state cpu;
 
 enum
 {
-    NOTYPE = 256, EQ, UEQ,GREATER, LOWER, LEQ, GEQ, AND, OR,NOT, REG,IDENTIFIER
+    NOTYPE = 256, EQ, UEQ,GREATER, LOWER, LEQ, GEQ, AND, OR,NOT, REG,IDENTIFIER, ADDR
 
     /* TODO: Add more token types */
 
@@ -97,6 +97,7 @@ static bool make_token(char *e)
     while(e[position] != '\0')
     {
         /* Try all rules one by one. */
+        bool isMutiAddr = false;
         for(i = 0; i < NR_REGEX; i ++)
         {
             if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0)
@@ -113,6 +114,14 @@ static bool make_token(char *e)
                 int iRule = 0;
                 switch(rules[i].token_type)
                 {
+                    case IDENTIFIER:case REG:
+                    isMutiAddr = true;
+                    break;
+                    default :
+                        isMutiAddr = false;
+                }
+                switch(rules[i].token_type)
+                {
                 case IDENTIFIER:
                 case REG:
                     tokens[nr_token].type = rules[i].token_type;
@@ -125,7 +134,7 @@ static bool make_token(char *e)
                     break;
                 case '+':
                 case '-':
-                case '*':
+                //case '*':
                 case '/':
                 case EQ:
                 case UEQ:
@@ -140,6 +149,18 @@ static bool make_token(char *e)
                 case ')':
                     tokens[nr_token].type = rules[i].token_type;
                     nr_token++;
+                    break;
+                case '*':
+                    if(isMutiAddr)
+                    {
+                        tokens[nr_token].type = ADDR;
+                        nr_token++;
+                    }
+                    else
+                    {
+                        tokens[nr_token].type = rules[i].token_type;
+                        nr_token++;
+                    }
                     break;
                 default:
                     panic("please implement me, make_token()  switch{}");
