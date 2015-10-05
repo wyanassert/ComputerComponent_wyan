@@ -255,6 +255,7 @@ int eval(int p, int q)
         int var1;
         int var2;
         opPosi = posiOfDomiOper(p, q);
+        printf("opPosi:%d\n", opPosi);
         if(opPosi == -1)
         {
             printf("Error : dominant operator find error\n");
