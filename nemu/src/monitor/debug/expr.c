@@ -281,10 +281,20 @@ int eval(int p, int q)
         printf("opPosi:%d\n", opPosi);
         if(opPosi == -1)
         {
+            var1 = p;
+            var2 = p;
             printf("Error : dominant operator find error\n");
         }
-        var1 = eval(p, opPosi - 1);
-        var2 = eval(opPosi + 1, q);
+        else if(opPosi == p)
+        {
+            var2 = eval(opPosi + 1, q);
+            var1 = var2;
+        }
+        else
+        {
+            var1 = eval(p, opPosi - 1);
+            var2 = eval(opPosi + 1, q);
+        }
         //printf("opPosi: %d, var1:%d, vqr2 :%d", opPosi, var1, var2);
         switch(tokens[opPosi].type)
         {
