@@ -369,7 +369,7 @@ int posiOfDomiOper(int p, int q)
         else if(tokens[i].type == ')')
             count--;
 
-        if(rankOfOper(tokens[i].type) >= oldRank)
+        if(rankOfOper(tokens[i].type) >= oldRank && !count)
         {
             result = i;
             oldRank = rankOfOper(tokens[i].type);
