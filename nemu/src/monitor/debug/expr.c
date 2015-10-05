@@ -258,6 +258,7 @@ int eval(int p, int q)
         }
         int var1 = eval(p, opPosi - 1);
         int var2 = eval(opPosi + 1, q);
+        printf("opPosi: %d, var1:%d, vqr2 :%d", opPosi, var1, var2);
         switch(tokens[opPosi].type)
         {
         case '+':
