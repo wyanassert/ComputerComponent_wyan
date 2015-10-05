@@ -524,14 +524,16 @@ int rankOfOper(int oper)
 {
     switch(oper)
     {
-        case OR: return 6;
-        case AND: return 5;
-        case UEQ: return 4;
-        case EQ: return 3;
-        case LEQ: case GEQ: case LOWER: case GREATER: return 2;
-        case '+': case '-': return 1;
-        case '*': case '/': return 0;
+        case OR: return 7;
+        case AND: return 6;
+        case UEQ: return 5;
+        case EQ: return 4;
+        case LEQ: case GEQ: case LOWER: case GREATER: return 3;
+        case '+': case '-': return 2;
+        case '*': case '/': return 1;
         //case NOT: return 6;
+
+        case ADDR: return 0;
         default:
             return -2;
     }
