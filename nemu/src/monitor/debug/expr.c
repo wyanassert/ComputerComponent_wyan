@@ -293,7 +293,10 @@ int eval(int p, int q)
         case '-':
             return var1 - var2;
         case '*':
-            return var1 * var2;
+            if(opPosi == p)
+                return hwaddr_read(var2, 1);
+            else
+                return var1 * var2;
         case '/':
             return var1 / var2;
         case EQ:
