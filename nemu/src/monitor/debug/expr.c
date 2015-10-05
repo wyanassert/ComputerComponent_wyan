@@ -117,6 +117,8 @@ static bool make_token(char *e)
                     case IDENTIFIER:case REG:
                     isMutiAddr = true;
                     break;
+                    case '*':
+                    break;
                     default :
                         isMutiAddr = false;
                 }
