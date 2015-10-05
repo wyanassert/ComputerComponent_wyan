@@ -278,7 +278,7 @@ int eval(int p, int q)
         int var1;
         int var2;
         opPosi = posiOfDomiOper(p, q);
-        printf("opPosi:%d\n", opPosi);
+        //printf("opPosi:%d\n", opPosi);
         if(opPosi == -1)
         {
             var1 = p;
@@ -289,7 +289,7 @@ int eval(int p, int q)
         {
             var2 = eval(opPosi + 1, q);
             var1 = var2;
-            printf("var2:%d\n", var2);
+            //printf("var2:%d\n", var2);
         }
         else
         {
