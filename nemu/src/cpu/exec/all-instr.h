@@ -19,6 +19,7 @@
 #include "logic/shl.h"
 #include "logic/shr.h"
 #include "logic/shrd.h"
+#include "logic/sub.h"
 
 #include "string/rep.h"
 
