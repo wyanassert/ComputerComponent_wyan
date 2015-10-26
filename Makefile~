@@ -52,7 +52,7 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-USERPROG := obj/testcase/mov-c
+USERPROG := obj/testcase/mov
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
@@ -60,7 +60,7 @@ entry: $(ENTRY)
 
 run: $(nemu_BIN) $(USERPROG) entry
 	$(call git_commit, "run")
-	###$(nemu_BIN) $(USERPROG)
+	$(nemu_BIN) $(USERPROG)
 
 gdb: $(nemu_BIN) $(USERPROG) entry
 	gdb -s $(nemu_BIN) --args $(nemu_BIN) $(USERPROG)
