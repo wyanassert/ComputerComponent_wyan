@@ -2,9 +2,9 @@
 #define instr sub
 
 static void do_execute () {
-    int val1 = op_dest->val;
-    int val2 = op_src->val;
-    int res = val1 - val2;
+    DATA_TYPE val1 = op_dest->val;
+    DATA_TYPE val2 = op_src->val;
+    DATA_TYPE res = val1 - val2;
 	OPERAND_W(op_dest, res);
 
 	if((((int) val1) > 0 && ((int) val2) < 0 && ((int) res) < 0) || (((int) val1) < 0 && ((int) val2) > 0 && ((int) res) > 0))
