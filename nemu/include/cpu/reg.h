@@ -39,7 +39,7 @@ typedef struct
     {
         uint32_t eflags;
         struct{
-            unsigned a :15;
+            unsigned a :14;
             unsigned VM:1;
             unsigned RF:1;
             unsigned b :1;
