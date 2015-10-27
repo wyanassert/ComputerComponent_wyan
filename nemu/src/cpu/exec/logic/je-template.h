@@ -1,14 +1,15 @@
 #include "cpu/exec/template-start.h"
-#include "cpu/reg.h"
+
 #define instr je
 
 static void do_execute(){
-    if(cpu.ZF==1)
-        cpu.eip+=op_src->val;
-    print_asm_template1();
-
-
-
+    uint32_t result = cpu.eip + (int32_t)op_src->val;
+    if(DATA_BYTE == 2){
+    	cpu.eip = result & 0x0000FFFF;
+    }
+    else
+        cpu.eip = result;
+	print_asm_template1();
 }
 
 
