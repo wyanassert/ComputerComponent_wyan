@@ -24,6 +24,7 @@
 #include "logic/test.h"
 #include "logic/push.h"
 #include "logic/je.h"
+#include "logic/cmp.h"
 
 #include "string/rep.h"
 
