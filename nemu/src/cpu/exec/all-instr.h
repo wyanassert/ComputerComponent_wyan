@@ -22,6 +22,7 @@
 #include "logic/sub.h"
 #include "logic/call.h"
 #include "logic/test.h"
+#include "logic/push.h"
 
 #include "string/rep.h"
 
