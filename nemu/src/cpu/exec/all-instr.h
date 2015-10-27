@@ -21,6 +21,7 @@
 #include "logic/shrd.h"
 #include "logic/sub.h"
 #include "logic/call.h"
+#include "logic/test.h"
 
 #include "string/rep.h"
 
