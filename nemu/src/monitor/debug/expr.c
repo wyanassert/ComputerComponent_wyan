@@ -559,6 +559,12 @@ int rankOfOper(int oper)
 
 int addrOfIdentify(char *str)
 {
-    //int length = nr_symtab_entry;
-    return 1;
+    int length = nr_symtab_entry;
+    int i = 0;
+    for( ; i < length; i++)
+    {
+        if(!strcmp(str, &strtab[symtab[i].st_name]))
+            return symtab[i].st_value;
+    }
+    return -1;
 }
