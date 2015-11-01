@@ -7,6 +7,7 @@
 #include <regex.h>
 
 extern CPU_state cpu;
+extern int nr_symtab_entry;
 
 enum
 {
@@ -86,6 +87,7 @@ int eval(int p, int q);
 int posiOfDomiOper(int p, int q);
 int intFromReg(char *reg);
 int rankOfOper(int oper);
+int addrOfIdentify(char *str);
 
 static bool make_token(char *e)
 {
@@ -550,4 +552,10 @@ int rankOfOper(int oper)
         default:
             return -2;
     }
+}
+
+int addrOfIdentify(char *str)
+{
+    //int length = nr_symtab_entry;
+    return 1;
 }
