@@ -240,9 +240,9 @@ int eval(int p, int q)
         {
             if(tokens[q].type == IDENTIFIER)
             {
-                int tmpAddr = addrOfIdentify(tokens[q].str) ;
+                /*int tmpAddr = addrOfIdentify(tokens[q].str) ;
                 if(tmpAddr != -1)
-                    return tmpAddr;
+                    return tmpAddr;*/
                 if(tokens[q].str[0] == '0' && tokens[q].str[1] == 'x')
                 {
                     int i = strlen(tokens[q].str) - 1;
