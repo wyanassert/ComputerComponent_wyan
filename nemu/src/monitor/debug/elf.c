@@ -83,5 +83,6 @@ void load_elf_tables(int argc, char *argv[]) {
 
 	fclose(fp);
 	printf("strtab:\n%s\n", strtab);
+	printf("%d\n", nr_symtab_entry);
 }
 
