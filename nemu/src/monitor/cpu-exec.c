@@ -84,7 +84,7 @@ void cpu_exec(volatile uint32_t n) {
         for(tmp = head; tmp!=NULL; tmp = tmp->next)
         {
             tmpresult = expr(tmp->expr, &success);
-            if(success && tmpresult == tmp->newValue)
+            if(success && tmpresult != tmp->newValue)
             {
                 tmp->oldValue = tmp->newValue;
                 tmp->newValue = tmpresult;
