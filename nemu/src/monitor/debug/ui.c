@@ -3,6 +3,7 @@
 #include "monitor/watchpoint.h"
 #include "nemu.h"
 #include "math.h"
+#include <elf.h>
 
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -17,6 +18,9 @@ extern WP* new_wp();
 extern void free_wp(WP* );
 extern WP wp_list[NR_WP];
 extern WP *head;
+extern int nr_symtab_entry;
+extern char *strtab;
+extern Elf32_Sym *symtab;
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets()
@@ -190,6 +194,45 @@ static int cmd_d(char *args)
     return 0;
 }
 
+
+typedef struct {
+    char name[15];
+    swaddr_t prev_ebp;
+    swaddr_t ret_addr;
+    swaddr_t begin_addr;
+    swaddr_t cur_addr;
+    uint32_t args[4];
+} PartOfStackFrame;
+
+static int cmd_bt(char *args)
+{
+   int i;
+   uint32_t temp_ebp = cpu.ebp;
+   PartOfStackFrame temp;
+   temp.ret_addr = 0;
+   while(temp_ebp != 0)
+   {
+        temp.prev_ebp = swaddr_read(temp_ebp, 4);
+        temp.cur_addr = temp.ret_addr? temp.ret_addr: cpu.eip;
+        for(i = 0; i < nr_symtab_entry; i++)
+        {
+            if(temp.cur_addr >= symtab[i].st_value && temp.cur_addr <= symtab[i].st_value + symtab[i].st_size)
+            {
+                strcpy(temp.name, (char *)&strtab[symtab[i].st_name]);
+                temp.begin_addr = symtab[i].st_value;
+            }
+        }
+        temp.ret_addr = swaddr_read(temp_ebp + 4, 4);
+        for(i = 0; i < 4; i++)
+        {
+            temp.args[i] = swaddr_read(temp_ebp + 8 + 4*i, 4);
+        }
+        temp_ebp = temp.prev_ebp;
+        printf("0x%08x\t%s(%d, %d, %d, %d)\n", temp.begin_addr, temp.name, temp.args[0], temp.args[1], temp.args[2], temp.args[3]);
+    }
+    return 0;
+}
+
 static struct
 {
     char *name;
@@ -206,7 +249,8 @@ static struct
     { "x", "swap the memory", cmd_x},
     { "w", "set watch point", cmd_w},
     { "d", "delete NO.N watchpoint", cmd_d},
-    /* TODO: Add more commands */
+    { "bt", "print stack frame chain", cmd_bt},
+        /* TODO: Add more commands */
 
 };
 
