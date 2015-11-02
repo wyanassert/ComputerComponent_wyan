@@ -212,12 +212,12 @@ static int cmd_bt(char *args)
    temp.ret_addr = 0;
    while(temp_ebp != 0)
    {
-        printf("ebp:%08x", temp_ebp);
+        printf("ebp:%08x\n", temp_ebp);
         temp.prev_ebp = swaddr_read(temp_ebp, 4);
         temp.cur_addr = temp.ret_addr? temp.ret_addr: cpu.eip;
         for(i = 0; i < nr_symtab_entry; i++)
         {
-            if(temp.cur_addr >= symtab[i].st_value && temp.cur_addr <= symtab[i].st_value + symtab[i].st_size)
+            if(temp.cur_addr >= symtab[i].st_value && temp.cur_addr < symtab[i].st_value + symtab[i].st_size)
             {
                 strcpy(temp.name, (char *)&strtab[symtab[i].st_name]);
                 temp.begin_addr = symtab[i].st_value;
