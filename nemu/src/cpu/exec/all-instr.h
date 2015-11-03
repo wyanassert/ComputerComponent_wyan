@@ -30,6 +30,7 @@
 #include "logic/jmp.h"
 #include "logic/jbe.h"
 #include "logic/add.h"
+#include "logic/adc.h"
 
 #include "string/rep.h"
 
