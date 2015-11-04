@@ -1,65 +1,25 @@
 #include "cpu/exec/template-start.h"
-#include "cpu/reg.h"
+
 #define instr cmp
 
 static void do_execute () {
 	DATA_TYPE result = op_dest->val - op_src->val;
 
+	cpu.CF = ((uint32_t)op_dest->val < (uint32_t)op_src->val);
+	cpu.PF = (result ^ (result >> 1) ^ (result >> 2) ^ (result >> 3) ^ (result >> 4) ^ (result >> 5) ^ (result >> 6) ^ (result >> 7)) & 0x01;
+    cpu.AF = ((uint32_t)(op_dest->val & 0x0f) < (uint32_t)(op_src->val & 0x0f));
+	cpu.ZF = (result == 0);
+#if DATA_BYTE == 1
+    cpu.SF = (result >> 7) & 0x1;
+#endif // DATA_BYTE
+#if DATA_BYTE == 2
+    cpu.SF = (result >> 15) & 0x1;
+#endif // DATA_BYTE
+#if DATA_BYTE == 4
+    cpu.SF = (result >> 31) & 0x1;
+#endif // DATA_BYTE
+	cpu.OF = (((int32_t)(op_dest->val) >= 0) && ((int32_t)(op_src->val) < 0) && ((int32_t)result < 0)) || (((int32_t)(op_dest->val) <= 0) && ((int32_t)(op_src->val) > 0) && ((int32_t)result > 0));
 
-	int dest=(int)op_dest->val;
-	int src=(int)op_src->val;
-	int result_flag=dest-src;
-	int PF_flag=0;
-
-
-	if(result>0)
-        cpu.SF=0;
-    else
-        if(result<=0)
-            cpu.SF=1;
-
-   if(result==0){
-        cpu.ZF=1;
-    }
-    else cpu.ZF=0;
-
-    if((dest>0&&src<0&&result_flag<0)||(dest<0&&src>0&&result_flag>0))
-        cpu.OF=1;
-    else cpu.OF=0;
-
-
-    if((unsigned)op_dest->val<(unsigned)op_src->val)
-        cpu.CF=1;
-        else cpu.CF=0;
-
-    if(result&0b1)
-        PF_flag++;
-    if(result&0b10)
-        PF_flag++;
-    if(result&0b100)
-        PF_flag++;
-    if(result&0b1000)
-        PF_flag++;
-    if(result&0b10000)
-        PF_flag++;
-    if(result&0b100000)
-        PF_flag++;
-    if(result&0b1000000)
-        PF_flag++;
-    if(result&0b10000000)
-        PF_flag++;
-    if(PF_flag%2==0)
-       cpu.PF=1;
-    else cpu.PF=0;
-
-   if((unsigned)(op_dest->val&0xF)<(unsigned)(op_src->val&0xF))
-        cpu.AF=1;
-  else cpu.AF=0;
-
-
-
-
-	/* TODO: Update cpuS. */
 
 	print_asm_template2();
 }
