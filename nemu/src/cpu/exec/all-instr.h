@@ -32,6 +32,7 @@
 #include "logic/add.h"
 #include "logic/adc.h"
 #include "logic/sbb.h"
+#include "logic/setcc.h"
 
 #include "string/rep.h"
 
