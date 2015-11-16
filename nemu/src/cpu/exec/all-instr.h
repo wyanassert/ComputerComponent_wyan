@@ -26,7 +26,6 @@
 #include "logic/call.h"
 #include "logic/test.h"
 #include "logic/push.h"
-#include "logic/je.h"
 #include "logic/cmp.h"
 #include "logic/jmp.h"
 #include "logic/jbe.h"
@@ -36,6 +35,8 @@
 #include "logic/setcc.h"
 #include "logic/ret.h"
 #include "logic/stos.h"
+
+#include "logic/je.h"
 
 #include "string/rep.h"
 
