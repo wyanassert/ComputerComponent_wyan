@@ -38,6 +38,22 @@
 #include "logic/cmp.h"
 #include "logic/jmp.h"
 
+#include "jcc/jb.h"
+#include "jcc/ja.h"
+#include "jcc/jae.h"
+#include "jcc/jcxz.h"
+#include "jcc/jg.h"
+#include "jcc/jge.h"
+#include "jcc/jl.h"
+#include "jcc/jle.h"
+#include "jcc/jne.h"
+#include "jcc/jno.h"
+#include "jcc/jnp.h"
+#include "jcc/jns.h"
+#include "jcc/jo.h"
+#include "jcc/jp.h"
+#include "jcc/js.h"
+
 #include "string/rep.h"
 
 #include "misc/misc.h"
