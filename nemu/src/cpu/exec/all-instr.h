@@ -31,7 +31,6 @@
 #include "logic/adc.h"
 #include "logic/sbb.h"
 #include "logic/setcc.h"
-#include "logic/ret.h"
 #include "logic/stos.h"
 
 #include "logic/je.h"
