@@ -3,8 +3,7 @@
 #define instr cmp
 
 static void do_execute () {
-DATA_TYPE result = op_dest->val - op_src->val;
-	OPERAND_W(op_dest, result);
+    DATA_TYPE result = op_dest->val - op_src->val;
 
 	cpu.CF = ((uint32_t)op_dest->val < (uint32_t)op_src->val);
 	cpu.PF = (result ^ (result >> 1) ^ (result >> 2) ^ (result >> 3) ^ (result >> 4) ^ (result >> 5) ^ (result >> 6) ^ (result >> 7)) & 0x01;
