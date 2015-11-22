@@ -33,6 +33,7 @@
 #include "logic/setcc.h"
 #include "logic/stos.h"
 #include "logic/pop.h"
+#include "logic/ret.h"
 
 #include "logic/je.h"
 #include "logic/cmp.h"
