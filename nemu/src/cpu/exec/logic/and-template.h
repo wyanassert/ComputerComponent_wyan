@@ -4,6 +4,7 @@
 
 static void do_execute () {
 	DATA_TYPE result = op_dest->val & op_src->val;
+	printf("%d,\n",op_src->size);
     OPERAND_W(op_dest, result);
 
     cpu.CF = 0;
@@ -11,15 +12,12 @@ static void do_execute () {
 
 #if DATA_BYTE == 1
     cpu.SF = (result >> 7) & 0x1;
-    printf("1\n");
 #endif // DATA_BYTE
 #if DATA_BYTE == 2
     cpu.SF = (result >> 15) & 0x1;
-    printf("2\n");
 #endif // DATA_BYTE
 #if DATA_BYTE == 4
     cpu.SF = (result >> 31) & 0x1;
-    printf("4\n");
 #endif // DATA_BYTE
     cpu.ZF = (result == 0);
     cpu.PF = (result ^ (result >> 1) ^ (result >> 2) ^ (result >> 3) ^ (result >> 4) ^ (result >> 5) ^ (result >> 6) ^ (result >> 7)) & 0x01;
