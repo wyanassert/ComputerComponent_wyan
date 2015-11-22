@@ -4,7 +4,7 @@
 
 static void do_execute () {
 	DATA_TYPE result = op_dest->val & op_src->val;
-	printf("%d,\n",op_src->size);
+	printf("%d,\n",op_src->type);
     OPERAND_W(op_dest, result);
 
     cpu.CF = 0;
