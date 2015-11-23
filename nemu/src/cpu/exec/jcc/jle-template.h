@@ -4,7 +4,7 @@
 
 static void do_execute ()
 {
-    if(cpu.ZF==1&&cpu.SF!=cpu.OF){
+    if(cpu.ZF==1||cpu.SF!=cpu.OF){
     #if DATA_BYTE==1
     cpu.eip+=(DATA_TYPE_S)op_src->val;
     #elif DATA_BYTE==2
