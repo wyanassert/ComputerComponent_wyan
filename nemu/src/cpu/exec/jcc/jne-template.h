@@ -4,8 +4,10 @@
 
 static void do_execute ()
 {
+printf("ZF:%d\n",cpu.ZF);
     if (!cpu.ZF)
     {
+        printf("1111\n");
         int32_t tsrc = (DATA_TYPE_S)op_src->val;
         cpu.eip += tsrc;
 #if DATA_BYTE == 2

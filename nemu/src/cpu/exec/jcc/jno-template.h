@@ -4,10 +4,8 @@
 
 static void do_execute ()
 {
-    printf("OF:%d", cpu.OF);
     if (!cpu.OF)
     {
-    printf("1111\n");
         int32_t tsrc = (DATA_TYPE_S)op_src->val;
         cpu.eip += tsrc;
 #if DATA_BYTE == 2
