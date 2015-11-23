@@ -3,9 +3,14 @@
 #define instr jbe
 
 static void do_execute(){
-    if(cpu.CF==1||cpu.ZF==1){
-        cpu.eip+=op_src->val;
-        cpu.eip-=0x100;}
+    if (cpu.ZF || cpu.CF)
+    {
+        int32_t tsrc = (DATA_TYPE_S)op_src->val;
+        cpu.eip += tsrc;
+#if DATA_BYTE == 2
+        cpu.eip &= 0x0000ffff;
+#endif // DATA_BYTE
+    }
     print_asm_template1();
 
 
