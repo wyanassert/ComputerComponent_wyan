@@ -4,6 +4,7 @@
 
 static void do_execute ()
 {
+    printf("OF:%d", cpu.OF);
     if (!cpu.OF)
     {
     printf("1111\n");
