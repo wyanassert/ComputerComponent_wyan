@@ -4,7 +4,7 @@
 
 static void do_execute()
 {
-    int len=concat(decode_i_, SUFFIX)(cpu.eip + 1) + 1;
+    int len=concat(decode_i_, SUFFIX)(cpu.eip + 1);
 	if(2 == DATA_BYTE){
 		cpu.esp =cpu.esp - 2;
 		MEM_W(cpu.esp, (uint16_t)((cpu.eip + len) & 0x0000ffff));
