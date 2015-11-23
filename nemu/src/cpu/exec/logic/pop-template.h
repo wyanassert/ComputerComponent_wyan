@@ -4,20 +4,10 @@
 
 static void do_execute(){
 
-  if(DATA_BYTE==1){
-    OPERAND_W(op_dest,MEM_R(cpu.esp));
-    cpu.esp+=2;
-}
-
-if(DATA_BYTE==2){
-    OPERAND_W(op_dest,MEM_R(cpu.esp));
-    cpu.esp+=2;
-}
-if(DATA_BYTE==4){
-OPERAND_W(op_dest,MEM_R(cpu.esp));
-cpu.esp+=4;
-}
-print_asm_template1();
+    DATA_TYPE result = MEM_R(cpu.esp);
+    cpu.esp += DATA_BYTE;
+    OPERAND_W(op_src, result);
+	print_asm_template1();
 
 
 }
