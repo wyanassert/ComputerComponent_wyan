@@ -5,7 +5,7 @@
 static void do_execute()
 {
     DATA_TYPE result = op_dest->val & op_src->val;
-
+    printf("Result :%d \n", result);
     cpu.OF = 0;
     cpu.CF = 0;
 #if DATA_BYTE == 1
