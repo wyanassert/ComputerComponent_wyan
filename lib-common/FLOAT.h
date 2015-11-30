@@ -6,24 +6,30 @@
 typedef int FLOAT;
 
 static inline int F2int(FLOAT a) {
-	nemu_assert(0);
-	return 0;
+    return a >> 16;
 }
 
 static inline FLOAT int2F(int a) {
-	nemu_assert(0);
-	return 0;
+    return a << 16;
 }
 
 static inline FLOAT F_mul_int(FLOAT a, int b) {
-	nemu_assert(0);
-	return 0;
+    return a * b;
 }
 
 static inline FLOAT F_div_int(FLOAT a, int b) {
-	nemu_assert(0);
-	return 0;
+    if(!b)
+    {
+        printf("ERROR:FLOAT F_div_int , a/b, b==0\n");
+    }
+    return a / b;
 }
+
+struct ieee754{
+    int tail:23;
+    int exp:8;
+    int sign:1;
+};
 
 FLOAT f2F(float);
 FLOAT F_mul_F(FLOAT, FLOAT);
