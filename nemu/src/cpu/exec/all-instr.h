@@ -35,6 +35,7 @@
 #include "logic/stos.h"
 #include "logic/pop.h"
 #include "logic/ret.h"
+#include "logic/shrd.h"
 
 #include "logic/je.h"
 #include "logic/cmp.h"

@@ -5,7 +5,7 @@ FLOAT_OBJ := $(FLOAT:.a=.o)
 $(FLOAT): $(FLOAT_OBJ)
 	ar r $(FLOAT) $(FLOAT_OBJ)
 
-# TODO: write a rule for generating $(FLOAT_OBJ)
+$(FLOAT_OBJ): lib-common/FLOAT.c lib-common/FLOAT.h
 	gcc -m32 -fno-builtin -c lib-common/FLOAT.c lib-common/FLOAT.h
 	[[ -d obj/lib-common ]] || mkdir -p obj/lib-common
 	mv -t obj/lib-common FLOAT.o

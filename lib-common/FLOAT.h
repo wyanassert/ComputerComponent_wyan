@@ -18,10 +18,6 @@ static inline FLOAT F_mul_int(FLOAT a, int b) {
 }
 
 static inline FLOAT F_div_int(FLOAT a, int b) {
-    if(!b)
-    {
-        printf("ERROR:FLOAT F_div_int , a/b, b==0\n");
-    }
     return a / b;
 }
 
