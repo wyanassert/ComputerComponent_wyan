@@ -2,8 +2,8 @@
 
 #define instr push
 
-static void do_execute(){
-
+static void do_execute()
+{
 #if DATA_BYTE == 2
     cpu.esp -= 2;
     swaddr_write(cpu.esp, 2, op_src->val);
@@ -12,8 +12,6 @@ static void do_execute(){
     swaddr_write(cpu.esp, 4, op_src->val);
 #endif // DATA_BYTE
     print_asm_template1();
-
-
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4

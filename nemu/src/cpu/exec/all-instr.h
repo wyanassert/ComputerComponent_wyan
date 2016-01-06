@@ -28,14 +28,12 @@
 #include "logic/sub.h"
 #include "logic/call.h"
 #include "logic/test.h"
-#include "logic/push.h"
 #include "logic/jbe.h"
 #include "logic/add.h"
 #include "logic/adc.h"
 #include "logic/sbb.h"
 #include "logic/setcc.h"
 #include "logic/stos.h"
-#include "logic/pop.h"
 #include "logic/ret.h"
 #include "logic/shrd.h"
 
@@ -62,6 +60,9 @@
 #include "jcc/js.h"
 
 #include "string/rep.h"
+
+#include "stack/push.h"
+#include "stack/pop.h"
 
 #include "misc/misc.h"
 
