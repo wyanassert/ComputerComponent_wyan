@@ -6,6 +6,8 @@
 #include "data-mov/movzx.h"
 #include "data-mov/movs.h"
 #include "data-mov/cwd.h"
+#include "data-mov/cbw.h"
+#include "data-mov/cmovcc.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
@@ -39,6 +41,8 @@
 
 #include "logic/je.h"
 #include "logic/cmp.h"
+#include "logic/clst.h"
+#include "logic/cmps.h"
 #include "logic/jmp.h"
 
 #include "jcc/jb.h"
