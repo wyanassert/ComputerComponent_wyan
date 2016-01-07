@@ -70,6 +70,7 @@ static SegDesc gdt[NR_SEGMENTS];
 
 static void
 set_segment(SegDesc *ptr, uint32_t pl, uint32_t type) {
+	nemu_assert(0);
 	ptr->limit_15_0  = 0xFFFF;
 	ptr->base_15_0   = 0x0;
 	ptr->base_23_16  = 0x0;
