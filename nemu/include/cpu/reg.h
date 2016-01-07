@@ -63,8 +63,6 @@ typedef struct
 } CPU_state;
 
 
-
-
 extern CPU_state cpu;
 
 
