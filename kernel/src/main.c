@@ -38,10 +38,10 @@ void init() {
 
 /* Initialization phase 2 */
 void init_cond() {
-
 #ifdef IA32_INTR
 	/* Reset the GDT, since the old GDT in start.S cannot be used in the future. */
 	init_segment();
+
 	/* Set the IDT by setting up interrupt and exception handlers.
 	 * Note that system call is the only exception implemented in NEMU.
 	 */
@@ -61,25 +61,24 @@ void init_cond() {
 	/* Enable interrupts. */
 	sti();
 #endif
-	//error after here
+
 #ifdef IA32_PAGE
 	/* Initialize the memory manager. */
 	init_mm();
 #endif
+
 	/* Output a welcome message.
 	 * Note that the output is actually performed only when
 	 * the serial port is available in NEMU.
 	 */
+	Log("Hello, NEMU world!");
 
-	//Log("Hello, NEMU world!");
-	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Write some test data to the video memory. */
 	video_mapping_write_test();
 #endif
 
 	/* Load the program. */
-	nemu_assert(0);
 	uint32_t eip = loader();
 	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
