@@ -70,7 +70,6 @@ static SegDesc gdt[NR_SEGMENTS];
 
 static void
 set_segment(SegDesc *ptr, uint32_t pl, uint32_t type) {
-	nemu_assert(0);
 	ptr->limit_15_0  = 0xFFFF;
 	ptr->base_15_0   = 0x0;
 	ptr->base_23_16  = 0x0;
@@ -91,6 +90,7 @@ set_segment(SegDesc *ptr, uint32_t pl, uint32_t type) {
  * below 0xC0000000, and is not in the user process' address space. */
 void
 init_segment(void) {
+	nemu_assert(0);
 	memset(gdt, 0, sizeof(gdt));
 	set_segment(&gdt[SEG_KERNEL_CODE], DPL_KERNEL, SEG_EXECUTABLE | SEG_READABLE);
 	set_segment(&gdt[SEG_KERNEL_DATA], DPL_KERNEL, SEG_WRITABLE );
