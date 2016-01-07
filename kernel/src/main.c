@@ -38,7 +38,7 @@ void init() {
 
 /* Initialization phase 2 */
 void init_cond() {
-	
+
 #ifdef IA32_INTR
 	/* Reset the GDT, since the old GDT in start.S cannot be used in the future. */
 	init_segment();
@@ -47,7 +47,7 @@ void init_cond() {
 	 */
 	init_idt();
 #endif
-	
+
 #ifdef HAS_DEVICE
 	/* Initialize the intel 8259 PIC (Programmable interrupt controller). */
 	init_i8259();
@@ -61,25 +61,26 @@ void init_cond() {
 	/* Enable interrupts. */
 	sti();
 #endif
-	nemu_assert(0);
+
 #ifdef IA32_PAGE
 	/* Initialize the memory manager. */
+	nemu_assert(0);
 	init_mm();
 #endif
-	
+
 	/* Output a welcome message.
 	 * Note that the output is actually performed only when
 	 * the serial port is available in NEMU.
 	 */
 	Log("Hello, NEMU world!");
-	
+
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Write some test data to the video memory. */
 	video_mapping_write_test();
 #endif
 
 	/* Load the program. */
-	
+
 	uint32_t eip = loader();
 	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
