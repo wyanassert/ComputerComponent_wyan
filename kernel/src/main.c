@@ -66,7 +66,7 @@ void init_cond() {
 	/* Initialize the memory manager. */
 	init_mm();
 #endif
-	nemu_assert(0);
+	
 	/* Output a welcome message.
 	 * Note that the output is actually performed only when
 	 * the serial port is available in NEMU.
@@ -79,7 +79,7 @@ void init_cond() {
 #endif
 
 	/* Load the program. */
-
+	nemu_assert(0);
 	uint32_t eip = loader();
 	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
