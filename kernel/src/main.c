@@ -80,7 +80,7 @@ void init_cond() {
 
 	/* Load the program. */
 	uint32_t eip = loader();
-//nemu_assert(eip == 0x8000a7);
+	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Read data in the video memory to check whether 
 	 * the test data is written sucessfully.
@@ -100,7 +100,7 @@ void init_cond() {
 	/* Keep the `bt' command happy. */
 	asm volatile("movl $0, %ebp");
 	asm volatile("subl $16, %esp");
-	//nemu_assert(eip == 0x8000a7);
+
 	/* Here we go! */
 	((void(*)(void))eip)();
 
