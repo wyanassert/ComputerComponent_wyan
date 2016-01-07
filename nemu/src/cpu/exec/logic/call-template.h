@@ -29,7 +29,21 @@ static void do_execute()
     print_asm_template1();*/
 }
 
-make_instr_helper(i)
-make_instr_helper(rm)
+make_helper(concat5(instr, _, i, _, SUFFIX))
+{
+
+    int len = concat4(decode_, i, _, SUFFIX)(eip+1);
+    do_execute(len);
+    return len+1;
+}
+
+make_helper(concat5(instr, _, rm, _, SUFFIX))
+{
+    int len = concat4(decode_, rm, _, SUFFIX)(eip+1);
+    do_execute(len);
+    return 0;
+}
+//make_instr_helper(i)
+//make_instr_helper(rm)
 
 #include "cpu/exec/template-end.h"
