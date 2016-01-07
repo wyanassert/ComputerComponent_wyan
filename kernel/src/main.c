@@ -81,7 +81,7 @@ void init_cond() {
 #endif
 
 	/* Load the program. */
-	//nemu_assert(0);
+	nemu_assert(0);
 	uint32_t eip = loader();
 	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
