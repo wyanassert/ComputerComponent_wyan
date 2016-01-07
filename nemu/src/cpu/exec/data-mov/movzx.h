@@ -4,5 +4,4 @@
 make_helper(movzx_rm2r_v);
 make_helper(movzx_rm2r_l_w);
 
-make_helper(movzx_rm2r_v);  //b7
-#endif
+#endif // MOVSX_H_INCLUDED
