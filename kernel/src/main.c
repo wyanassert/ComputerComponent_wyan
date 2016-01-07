@@ -66,13 +66,13 @@ void init_cond() {
 	/* Initialize the memory manager. */
 	init_mm();
 #endif
-	nemu_assert(0);
+	//error after here
 	/* Output a welcome message.
 	 * Note that the output is actually performed only when
 	 * the serial port is available in NEMU.
 	 */
 	Log("Hello, NEMU world!");
-
+	nemu_assert(0);
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Write some test data to the video memory. */
 	video_mapping_write_test();
