@@ -61,12 +61,12 @@ void init_cond() {
 	/* Enable interrupts. */
 	sti();
 #endif
-	nemu_assert(0);
+	
 #ifdef IA32_PAGE
 	/* Initialize the memory manager. */
 	init_mm();
 #endif
-
+	nemu_assert(0);
 	/* Output a welcome message.
 	 * Note that the output is actually performed only when
 	 * the serial port is available in NEMU.
