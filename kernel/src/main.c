@@ -38,7 +38,7 @@ void init() {
 
 /* Initialization phase 2 */
 void init_cond() {
-	nemu_assert(0);
+	
 #ifdef IA32_INTR
 	/* Reset the GDT, since the old GDT in start.S cannot be used in the future. */
 	init_segment();
@@ -47,7 +47,7 @@ void init_cond() {
 	 */
 	init_idt();
 #endif
-
+	nemu_assert(0);
 #ifdef HAS_DEVICE
 	/* Initialize the intel 8259 PIC (Programmable interrupt controller). */
 	init_i8259();
