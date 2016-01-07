@@ -47,7 +47,7 @@ void init_cond() {
 	 */
 	init_idt();
 #endif
-	nemu_assert(0);
+	
 #ifdef HAS_DEVICE
 	/* Initialize the intel 8259 PIC (Programmable interrupt controller). */
 	init_i8259();
@@ -61,7 +61,7 @@ void init_cond() {
 	/* Enable interrupts. */
 	sti();
 #endif
-
+	nemu_assert(0);
 #ifdef IA32_PAGE
 	/* Initialize the memory manager. */
 	init_mm();
