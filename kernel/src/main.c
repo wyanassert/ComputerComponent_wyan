@@ -61,7 +61,7 @@ void init_cond() {
 	/* Enable interrupts. */
 	sti();
 #endif
-	
+	nemu_assert(0);
 #ifdef IA32_PAGE
 	/* Initialize the memory manager. */
 	init_mm();
@@ -72,7 +72,7 @@ void init_cond() {
 	 * the serial port is available in NEMU.
 	 */
 	Log("Hello, NEMU world!");
-	nemu_assert(0);
+	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Write some test data to the video memory. */
 	video_mapping_write_test();
