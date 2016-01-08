@@ -23,7 +23,7 @@ typedef struct
 CACHE cache;
 
 void init_cache();
-bool iscachehit(hwaddr_t addr);
+
 void writecache(hwaddr_t addr, size_t len, uint32_t data);
 uint32_t readcache(hwaddr_t addr, size_t len);
 
