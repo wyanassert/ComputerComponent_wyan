@@ -152,11 +152,7 @@ static int cmd_x(char *args)
         for(i = 0; i < N; i++)
         {
             printf("the %d line:  ", i);
-            int j = 0;
-            for(j = 0; j < 4; j++)
-            {
-                printf("%x\t", hwaddr_read(tmpAddr + i * 4 + j, 1));
-            }
+            printf("%x\t", hwaddr_read(tmpAddr + i * 4, 4));
             printf("\n");
         }
     }
