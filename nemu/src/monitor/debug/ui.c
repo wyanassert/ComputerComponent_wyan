@@ -22,6 +22,8 @@ extern int nr_symtab_entry;
 extern char *strtab;
 extern Elf32_Sym *symtab;
 
+uint32_t readcache(hwaddr_t addr, size_t len);
+
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets()
 {
@@ -101,6 +103,14 @@ static int cmd_p(char *args)
     {
         printf("result:(%d)10, (0x%x)16\n", tmpResult, tmpResult);
     }
+    return 0;
+}
+
+static int cmd_cache(char *args)
+{
+    bool success;
+    uint32_t tmpAddr = expr(args, &success);
+    printf("addr:%x:%x\n", tmpAddr, readcache(tmpAddr, 4));
     return 0;
 }
 
@@ -248,6 +258,7 @@ static struct
     { "w", "set watch point", cmd_w},
     { "d", "delete NO.N watchpoint", cmd_d},
     { "bt", "print stack frame chain", cmd_bt},
+    { "cache", "monitor cache", cmd_cache},
         /* TODO: Add more commands */
 
 };
