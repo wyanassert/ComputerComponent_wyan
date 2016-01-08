@@ -23,5 +23,6 @@ typedef struct
 CACHE cache;
 
 void init_cache();
+bool iscachehit(lnaddr_t addr);
 
 #endif
