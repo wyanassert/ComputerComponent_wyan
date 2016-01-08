@@ -6,8 +6,15 @@ void dram_write(hwaddr_t, size_t, uint32_t);
 
 extern CACHE cache;
 
+int generaterandom(int random)
+{
+	return random * random + 422 + random / 3;
+}
+
 void init_cache()
 {
+	cache.total = 0;
+	cache.nothitnum = 0;
 	int i, j;
 	for(i = 0; i < 128; i++)
 	    for(j = 0; j < 8; j++)
@@ -20,6 +27,7 @@ void init_cache()
 
 void writecache(hwaddr_t addr, size_t len, uint32_t data)
 {
+	static int random;
 	int setnum = addr % 128;
 	bool ishit = false;
 	int i = 0;
@@ -47,13 +55,20 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 		if(!isfindempty)
 		{
 			//weed out here
+			int weednum = generaterandom(random) % 8;
+			cache.set[setnum].block[weednum].addr = addr;
+			cache.set[setnum].block[weednum].value = data & (~0u >> ((4 - len) << 3));
 		}
 	}
 	dram_write(addr, len, data);
+	random += 7;
+	if(random > 1543)
+		random -= 1543;
 	return ;
 }
 uint32_t readcache(hwaddr_t addr, size_t len)
 {
+	cache.total ++;
 	int setnum = addr % 128;
 	bool ishit = false;
 	uint32_t tmpresult;
@@ -71,8 +86,10 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 	}
 	else
 	{
+		cache.nothitnum ++;
 		tmpresult = dram_read(addr, len) & (~0u >> ((4 - len) << 3));
 		writecache(addr, len, tmpresult);
 		return tmpresult;
 	}
 }
+

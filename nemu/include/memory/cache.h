@@ -18,6 +18,8 @@ typedef struct
 typedef struct
 {
 	CACHE_SET set[128];/* data */
+	uint32_t total;
+	uint32_t nothitnum;
 } CACHE;
 
 CACHE cache;

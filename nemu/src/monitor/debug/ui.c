@@ -21,6 +21,7 @@ extern WP *head;
 extern int nr_symtab_entry;
 extern char *strtab;
 extern Elf32_Sym *symtab;
+extern CACHE cache;
 
 uint32_t readcache(hwaddr_t addr, size_t len);
 
@@ -110,7 +111,7 @@ static int cmd_cache(char *args)
 {
     bool success;
     uint32_t tmpAddr = expr(args, &success);
-    printf("addr:%x:%x\n", tmpAddr, readcache(tmpAddr, 4));
+    printf("addr:%x:%x   cache_total:%u  cache_nothit:%u\n", tmpAddr, readcache(tmpAddr, 4), cache.total, cache.nothitnum);
     return 0;
 }
 
