@@ -28,6 +28,7 @@ void init_cache()
 
 void writecache(hwaddr_t addr, size_t len, uint32_t data)
 {
+	dram_write(addr, len, data);
 	static int random;
 	int setnum = addr % 128;
 	bool ishit = false;
@@ -62,7 +63,7 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 		}
 	}
 	writesecondcache(addr, len, data);
-	dram_write(addr, len, data);
+	
 
 	random += 7;
 	if(random > 1543)
