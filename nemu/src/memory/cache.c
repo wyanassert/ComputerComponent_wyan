@@ -30,6 +30,7 @@ void init_cache()
 void writecache(hwaddr_t addr, size_t len, uint32_t data)
 {
 	dram_write(addr, len, data);
+
 	static int random;
 	int setnum = addr % 128;
 	bool ishit = false;
@@ -65,6 +66,8 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 	}
 	writesecondcache(addr, len, data);
 	
+	if(addr == 0x8013b8)
+		printf("write in 8013b8,data(%x)\n", readcache(addr, 4));
 
 	random += 7;
 	if(random > 1543)
