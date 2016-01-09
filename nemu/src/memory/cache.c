@@ -38,6 +38,8 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 			cache.set[setnum].block[i].addr = addr;
 			cache.set[setnum].block[i].value = data;
 		}
+	if(addr == 0x7ffffd0)
+		printf("write hit:%d\n", ishit);
 	if(!ishit)
 	{
 		bool isfindempty = false;
