@@ -24,6 +24,7 @@ extern Elf32_Sym *symtab;
 extern CACHE cache;
 
 uint32_t readcache(hwaddr_t addr, size_t len);
+uint32_t dram_read(hwaddr_t addr, size_t len);
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets()
@@ -163,8 +164,8 @@ static int cmd_x(char *args)
         for(i = 0; i < N; i++)
         {
             printf("the %d line:  ", i);
-            printf("%x\t", hwaddr_read(tmpAddr + i * 4, 4));
-            printf("\n");
+            //printf("%x\n", hwaddr_read(tmpAddr + i * 4, 4));
+            printf("%x\n", dram_read(tmpAddr + i * 4, 4));
         }
     }
 
