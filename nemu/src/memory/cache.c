@@ -77,7 +77,7 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 		}
 	}
 	if(readcache(addr, 4) != dram_read(addr, 4))
-		printf("write Error cache addr(%x), len(%d), data(%x)\n", addr, len, data);
+		printf("write Error cache addr(%x), len(%d), data(%x), chche(%x), dram(%x) \n", addr, len, data, readcache(addr, 4),dram_read(addr, 4));
 	random += 7;
 	if(random > 1543)
 		random -= 1543;
