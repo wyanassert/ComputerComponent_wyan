@@ -22,12 +22,14 @@ void init_cache()
 	    {
 	        cache.set[i].block[j].valid = 0;
 	        cache.set[i].block[j].addr = 0;
-	        cache.set[i].block[j].value = 1;
+	        cache.set[i].block[j].value = 0;
 	    }
 }
 
 void writecache(hwaddr_t addr, size_t len, uint32_t data)
 {
+	if(addr == 0x8013b8)
+		printf("write in cache addr(%x), len(%d), data(%x)", addr, len, data);
 	static int random;
 	int setnum = addr % 128;
 	bool ishit = false;
