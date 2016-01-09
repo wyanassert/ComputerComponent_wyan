@@ -86,7 +86,8 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 	}
 	else
 	{
-		printf("addr(%x)did not hit in cache1 \n", addr);
+		if(addr == 0x100873)
+			printf("addr(%x)did not hit in cache1 \n", addr);
 		cache.nothitnum ++;
 		tmpresult = readsecondcache(addr, len);
 		writecache(addr, len, tmpresult);
