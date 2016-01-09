@@ -2,7 +2,7 @@
 #include "nemu.h"
 
 
-// uint32_t dram_read(hwaddr_t, size_t);
+uint32_t dram_read(hwaddr_t, size_t);
 // void dram_write(hwaddr_t, size_t, uint32_t);
 
 void writecache(hwaddr_t addr, size_t len, uint32_t data);
@@ -11,6 +11,8 @@ uint32_t readcache(hwaddr_t addr, size_t len);
 /* Memory accessing interfaces */
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
+	if(dram_read(addr, len)!= readcache(addr, len))
+		printf("addr:%x, read error len:%d\n", addr, len);
 	//return dram_read(addr, len) & (~0u >> ((4 - len) << 3));
 	return readcache(addr, len) & (~0u >> ((4 - len) << 3));
 }
