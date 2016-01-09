@@ -97,7 +97,8 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 			break ;
 		}
 	if(addr == 0x1012a9)
-		printf("read addr(%x), ishit(%d)data(%x), dram(%x)\n", addr, ishit, tmpresult, dram_read(addr, len));
+		if(ishit && tmpresult != dram_read(addr, 4))
+			printf("read addr(%x), ishit(%d)data(%x), dram(%x)\n", addr, ishit, tmpresult, dram_read(addr, len));
 	if(ishit)
 	{
 		return tmpresult;
