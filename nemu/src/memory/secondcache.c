@@ -4,6 +4,8 @@
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
 
+extern SECOND_CACHE secondcache;
+
 void init_secondcache()
 {
 
