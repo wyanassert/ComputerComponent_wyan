@@ -38,7 +38,7 @@ void writesecondcache(hwaddr_t addr, size_t len, uint32_t data)
 			ishit = true;
 			secondcache.set[setnum].block[i].dirty = true;
 			secondcache.set[setnum].block[i].addr = addr;
-			secondcache.set[setnum].block[i].value = data & (~0u >> ((4 - len) << 3));
+			secondcache.set[setnum].block[i].value = data;
 		}
 	if(!ishit)
 	{
@@ -51,7 +51,7 @@ void writesecondcache(hwaddr_t addr, size_t len, uint32_t data)
 				secondcache.set[setnum].block[i].dirty = false;
 				secondcache.set[setnum].block[i].valid = true;
 				secondcache.set[setnum].block[i].addr = addr;
-				secondcache.set[setnum].block[i].value = data & (~0u >> ((4 - len) << 3));
+				secondcache.set[setnum].block[i].value = data;
 				break;
 			}
 		}
@@ -62,7 +62,7 @@ void writesecondcache(hwaddr_t addr, size_t len, uint32_t data)
 			if(secondcache.set[setnum].block[weednum].dirty)
 				dram_write(secondcache.set[setnum].block[weednum].addr, len, secondcache.set[setnum].block[weednum].value);
 			secondcache.set[setnum].block[weednum].addr = addr;
-			secondcache.set[setnum].block[weednum].value = data & (~0u >> ((4 - len) << 3));
+			secondcache.set[setnum].block[weednum].value = data;
 		}
 	}
 	random += 7;
@@ -86,12 +86,12 @@ uint32_t readsecondcache(hwaddr_t addr, size_t len)
 		}
 	if(ishit)
 	{
-		return tmpresult & (~0u >> ((4 - len) << 3));
+		return tmpresult;
 	}
 	else
 	{
 		secondcache.nothitnum ++;
-		tmpresult = dram_read(addr, len) & (~0u >> ((4 - len) << 3));
+		tmpresult = dram_read(addr, len);
 		writesecondcache(addr, len, tmpresult);
 		return tmpresult;
 	}}

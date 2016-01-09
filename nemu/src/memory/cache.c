@@ -36,7 +36,7 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 		{
 			ishit = true;
 			cache.set[setnum].block[i].addr = addr;
-			cache.set[setnum].block[i].value = data & (~0u >> ((4 - len) << 3));
+			cache.set[setnum].block[i].value = data;
 		}
 	if(!ishit)
 	{
@@ -48,7 +48,7 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 				isfindempty = true;
 				cache.set[setnum].block[i].valid = true;
 				cache.set[setnum].block[i].addr = addr;
-				cache.set[setnum].block[i].value = data & (~0u >> ((4 - len) << 3));
+				cache.set[setnum].block[i].value = data;
 				break;
 			}
 		}
@@ -57,7 +57,7 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 			//weed out here
 			int weednum = generaterandom(random) % 8;
 			cache.set[setnum].block[weednum].addr = addr;
-			cache.set[setnum].block[weednum].value = data & (~0u >> ((4 - len) << 3));
+			cache.set[setnum].block[weednum].value = data;
 		}
 	}
 	writesecondcache(addr, len, data);
@@ -82,12 +82,12 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 		}
 	if(ishit)
 	{
-		return tmpresult & (~0u >> ((4 - len) << 3));
+		return tmpresult;
 	}
 	else
 	{
 		cache.nothitnum ++;
-		tmpresult = readsecondcache(addr, len) & (~0u >> ((4 - len) << 3));
+		tmpresult = readsecondcache(addr, len);
 		writecache(addr, len, tmpresult);
 		return tmpresult;
 	}
