@@ -100,5 +100,6 @@ void restart()
 
     //init cache
     init_cache();
+    init_secondcache();
     
 }

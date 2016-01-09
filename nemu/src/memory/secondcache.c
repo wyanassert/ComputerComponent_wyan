@@ -8,7 +8,17 @@ extern SECOND_CACHE secondcache;
 
 void init_secondcache()
 {
-
+	secondcache.total = 0;
+	secondcache.nothitnum = 0;
+	int i, j;
+	for(i = 0; i < 4096; i++)
+	    for(j = 0; j < 16; j++)
+	    {
+	        secondcache.set[i].block[j].valid = 0;
+	        secondcache.set[i].block[j].dirty = 0;
+	        secondcache.set[i].block[j].addr = 0;
+	        secondcache.set[i].block[j].value = 1;
+	    }
 }
 
 void writesecondcache(hwaddr_t addr, size_t len, uint32_t data)

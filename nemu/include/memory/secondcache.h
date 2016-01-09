@@ -13,12 +13,12 @@ typedef struct
 
 typedef struct
 {
-	CACHE_BLOCK block[8];/* data */
+	SECOND_CACHE_BLOCK block[16];/* data */
 } SECOND_CACHE_SET;
 
 typedef struct
 {
-	SECOND_CACHE_SET set[128];/* data */
+	SECOND_CACHE_SET set[4096];/* data */
 	uint32_t total;
 	uint32_t nothitnum;
 } SECOND_CACHE;
