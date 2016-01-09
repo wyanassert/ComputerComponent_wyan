@@ -73,6 +73,7 @@ static void ddr3_read(hwaddr_t addr, void *data) {
 }
 
 static void ddr3_write(hwaddr_t addr, void *data, uint8_t *mask) {
+	printf("write in ddr3_write:addr:%x", addr);
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!", addr);
 
 	dram_addr temp;
