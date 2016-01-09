@@ -3,6 +3,7 @@
 
 void writesecondcache(hwaddr_t addr, size_t len, uint32_t data);
 uint32_t readsecondcache(hwaddr_t addr, size_t len);
+void dram_write(hwaddr_t, size_t, uint32_t);
 
 extern CACHE cache;
 
@@ -63,6 +64,8 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 		}
 	}
 	writesecondcache(addr, len, data);
+	dram_write(addr, len, data);
+
 	random += 7;
 	if(random > 1543)
 		random -= 1543;
