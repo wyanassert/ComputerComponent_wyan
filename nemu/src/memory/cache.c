@@ -43,9 +43,9 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 		{
 			ishit = true;
 			cache.set[setnum].block[i].addr = addr;
-			if(len < 4)
-				cache.set[setnum].block[i].value = dram_read(addr, 4);
-			else
+			// if(len < 4)
+			// 	cache.set[setnum].block[i].value = dram_read(addr, 4);
+			// else
 				cache.set[setnum].block[i].value = data;
 		}
 	if(!ishit)
@@ -58,10 +58,10 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 				isfindempty = true;
 				cache.set[setnum].block[i].valid = true;
 				cache.set[setnum].block[i].addr = addr;
-				if(len < 4)
-				cache.set[setnum].block[i].value = dram_read(addr, 4);
-			else
-				cache.set[setnum].block[i].value = data;
+				// if(len < 4)
+				// 	cache.set[setnum].block[i].value = dram_read(addr, 4);
+				// else
+					cache.set[setnum].block[i].value = data;
 				break;
 			}
 		}
@@ -70,9 +70,9 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 			//weed out here
 			int weednum = generaterandom(random) % 8;
 			cache.set[setnum].block[weednum].addr = addr;
-			if(len < 4)
-				cache.set[setnum].block[i].value = dram_read(addr, 4);
-			else
+			// if(len < 4)
+			// 	cache.set[setnum].block[i].value = dram_read(addr, 4);
+			// else
 				cache.set[setnum].block[i].value = data;
 		}
 	}
