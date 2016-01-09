@@ -68,6 +68,8 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 }
 uint32_t readcache(hwaddr_t addr, size_t len)
 {
+	if(addr == 0x7ffffd0)
+		printf("start addr(%x) read incache1\n", addr);
 	cache.total ++;
 	int setnum = addr % 128;
 	bool ishit = false;
