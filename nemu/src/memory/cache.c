@@ -96,7 +96,8 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 			tmpresult = cache.set[setnum].block[i].value;
 			break ;
 		}
-
+	if(addr == 0x1012a9)
+		printf("read addr(%x), ishit(%d)\n", addr, ishit);
 	if(ishit)
 	{
 		return tmpresult;
