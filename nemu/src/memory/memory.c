@@ -20,6 +20,7 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	//dram_write(addr, len, data);
+	printf("write: addr:%x, len:%d, data:%x\n", addr, len, data);
 	writecache(addr, len, data);
 }
 
