@@ -4,7 +4,6 @@
 void writesecondcache(hwaddr_t addr, size_t len, uint32_t data);
 uint32_t readsecondcache(hwaddr_t addr, size_t len);
 void dram_write(hwaddr_t, size_t, uint32_t);
-uint32_t dram_read(hwaddr_t, size_t);
 
 extern CACHE cache;
 
@@ -40,7 +39,7 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 		{
 			ishit = true;
 			cache.set[setnum].block[i].addr = addr;
-			cache.set[setnum].block[i].value = dram_read(addr, 4);
+			cache.set[setnum].block[i].value = data;
 		}
 	if(!ishit)
 	{
@@ -52,7 +51,7 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 				isfindempty = true;
 				cache.set[setnum].block[i].valid = true;
 				cache.set[setnum].block[i].addr = addr;
-				cache.set[setnum].block[i].value = dram_read(addr, 4);
+				cache.set[setnum].block[i].value = data;
 				break;
 			}
 		}
@@ -61,13 +60,10 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 			//weed out here
 			int weednum = generaterandom(random) % 8;
 			cache.set[setnum].block[weednum].addr = addr;
-			cache.set[setnum].block[weednum].value = dram_read(addr, 4);
+			cache.set[setnum].block[weednum].value = data;
 		}
 	}
 	writesecondcache(addr, len, data);
-	
-	if(addr == 0x8013b8)
-		printf("write in 8013b8,dram(%x), cache(%x)\n", dram_read(addr, 4),readcache(addr, 4));
 
 	random += 7;
 	if(random > 1543)
