@@ -82,6 +82,8 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 			tmpresult = cache.set[setnum].block[i].value;
 			break ;
 		}
+	if(addr == 0x7ffffd0)
+		printf("hit:%d\n", ishit);
 	if(ishit)
 	{
 		return tmpresult;
