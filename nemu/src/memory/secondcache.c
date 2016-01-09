@@ -91,7 +91,7 @@ uint32_t readsecondcache(hwaddr_t addr, size_t len)
 	else
 	{
 		secondcache.nothitnum ++;
-		tmpresult = dram_read(addr, len);
+		tmpresult = dram_read(addr, 4);
 		writesecondcache(addr, len, tmpresult);
 		return tmpresult;
 	}}
