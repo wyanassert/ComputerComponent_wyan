@@ -29,7 +29,7 @@ void init_cache()
 void writecache(hwaddr_t addr, size_t len, uint32_t data)
 {
 	if(addr == 0x8013b8)
-		printf("write in cache addr(%x), len(%d), data(%x)", addr, len, data);
+		printf("write in cache addr(%x), len(%d), data(%x)\n", addr, len, data);
 	static int random;
 	int setnum = addr % 128;
 	bool ishit = false;
