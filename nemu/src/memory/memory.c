@@ -11,8 +11,6 @@ uint32_t readcache(hwaddr_t addr, size_t len);
 /* Memory accessing interfaces */
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
-	if(addr == 0x7ffffd0)
-		printf("read: addr:%x, len:%d\n", addr, len);
 	uint32_t result_dram = dram_read(addr, len) & (~0u >> ((4 - len) << 3)), result_cache = readcache(addr, len) & (~0u >> ((4 - len) << 3));
 	if(result_cache!= result_dram)
 		printf("read [error],addr:%x, len:%d, dram:%x, cache:%x\n", addr, len, result_dram, result_cache);
@@ -25,8 +23,6 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	//dram_write(addr, len, data);
 	//printf("write: addr:%x, len:%d, data:%x\n", addr, len, data);
-	if(addr == 0x7ffffd0)
-		printf("did write addr(%x),len(%d), data(%x)\n", addr, len, data);
 	writecache(addr, len, data);
 }
 

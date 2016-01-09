@@ -39,8 +39,6 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 			cache.set[setnum].block[i].addr = addr;
 			cache.set[setnum].block[i].value = data;
 		}
-	if(addr == 0x7ffffd0)
-		printf("write hit:%d\n", ishit);
 	if(!ishit)
 	{
 		bool isfindempty = false;
@@ -73,8 +71,6 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 }
 uint32_t readcache(hwaddr_t addr, size_t len)
 {
-	if(addr == 0x7ffffd0)
-		printf("start addr(%x) read incache1\n", addr);
 	cache.total ++;
 	int setnum = addr % 128;
 	bool ishit = false;
@@ -94,8 +90,6 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 	}
 	else
 	{
-		if(addr == 0x7ffffd0)
-			printf("addr(%x)did not hit in cache1 \n", addr);
 		cache.nothitnum ++;
 		tmpresult = readsecondcache(addr, len);
 		writecache(addr, len, tmpresult);
