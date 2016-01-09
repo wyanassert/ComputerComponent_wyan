@@ -83,7 +83,7 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 			break ;
 		}
 	if(addr == 0x7ffffd0)
-		printf("hit:%d\n", ishit);
+		printf("hit:%d num:%d\n", ishit, i);
 	if(ishit)
 	{
 		return tmpresult;
