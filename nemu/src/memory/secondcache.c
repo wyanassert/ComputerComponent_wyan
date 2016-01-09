@@ -94,6 +94,8 @@ uint32_t readsecondcache(hwaddr_t addr, size_t len)
 		if(addr == 0x100873)
 			printf("addr(%x), did not hit cache2 \n", addr);
 		tmpresult = dram_read(addr, 4);
+		if(addr == 0x100873)
+			printf("addr(%x), write in cache2 data:%x \n", addr, tmpresult);
 		writesecondcache(addr, len, tmpresult);
 		return tmpresult;
 	}}
