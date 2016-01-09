@@ -1,8 +1,8 @@
 #include "common.h"
 #include "nemu.h"
 
-uint32_t dram_read(hwaddr_t, size_t);
-void dram_write(hwaddr_t, size_t, uint32_t);
+void writesecondcache(hwaddr_t addr, size_t len, uint32_t data);
+uint32_t readsecondcache(hwaddr_t addr, size_t len);
 
 extern CACHE cache;
 
@@ -60,7 +60,7 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 			cache.set[setnum].block[weednum].value = data & (~0u >> ((4 - len) << 3));
 		}
 	}
-	dram_write(addr, len, data);
+	writesecondcache(addr, len, data);
 	random += 7;
 	if(random > 1543)
 		random -= 1543;
@@ -87,7 +87,7 @@ uint32_t readcache(hwaddr_t addr, size_t len)
 	else
 	{
 		cache.nothitnum ++;
-		tmpresult = dram_read(addr, len) & (~0u >> ((4 - len) << 3));
+		tmpresult = readsecondcache(addr, len) & (~0u >> ((4 - len) << 3));
 		writecache(addr, len, tmpresult);
 		return tmpresult;
 	}
