@@ -29,7 +29,6 @@ void init_cache()
 
 void writecache(hwaddr_t addr, size_t len, uint32_t data)
 {
-	writesecondcache(addr, len, data);
 	dram_write(addr, len, data);
 
 	if(addr == 0x8013b8)
@@ -76,6 +75,8 @@ void writecache(hwaddr_t addr, size_t len, uint32_t data)
 				cache.set[setnum].block[i].value = data;
 		}
 	}
+	
+	writesecondcache(addr, len, data);
 
 	random += 7;
 	if(random > 1543)
