@@ -11,7 +11,6 @@ NEWLIBC_DIR := $(LIB_COMMON_DIR)/newlib
 NEWLIBC := $(NEWLIBC_DIR)/libc.a
 FLOAT := obj/$(LIB_COMMON_DIR)/FLOAT.a
 
-include config/Makefile.git
 include config/Makefile.build
 
 all: nemu
@@ -60,7 +59,6 @@ entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
 
 run: $(nemu_BIN) $(USERPROG) entry
-	#$(call git_commit, "run")
 	$(nemu_BIN) $(USERPROG)
 
 gdb: $(nemu_BIN) $(USERPROG) entry
